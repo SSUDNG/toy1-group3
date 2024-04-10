@@ -10,7 +10,7 @@ const Container = styled.div`
 `;
 
 const Title = styled.h1`
-  font-size: 30px;
+  font-size: 26px;
   margin-top: 0;
   margin-bottom: 20px;
 `;
@@ -33,7 +33,7 @@ const Label = styled.label`
 `;
 
 const LabelText = styled.p`
-  font-size: 14px;
+  font-size: 16px;
   margin-top: 0;
   margin-bottom: 5px;
 `;
@@ -43,6 +43,14 @@ const Select = styled.select`
   border: 1px solid #dddddd;
   border-radius: 6px;
   color: #818181;
+
+  option#placeholder {
+    color: #818181;
+  }
+
+  option:checked {
+    color: #333;
+  }
 `;
 
 const Input = styled.input`
@@ -52,20 +60,29 @@ const Input = styled.input`
   color: #818181;
 `;
 
+const NotesInput = styled(Input)`
+  height: 100px;
+  color: #333;
+`;
+
 const ButtonContainer = styled.div`
   display: flex;
   gap: 10px;
 `;
 
 const Button = styled.button`
-  max-width: 100px;
+  max-width: 120px;
   width: 100%;
-  padding: 8px;
+  padding: 10px;
   background-color: #333;
   color: #fff;
-  border-radius: 4px;
+  border-radius: 6px;
   border: none;
   font-size: 14px;
+`;
+
+const SubmitButton = styled(Button)`
+  background-color: #4724ac;
 `;
 
 const Request: React.FunctionComponent = function Request() {
@@ -113,7 +130,9 @@ const Request: React.FunctionComponent = function Request() {
         <Label htmlFor={vacationType}>
           <LabelText>휴가 종류</LabelText>
           <Select value={vacationType} onChange={handleVacationTypeChange}>
-            <option value="">선택하세요</option>
+            <option value="" id="placeholder">
+              선택하세요
+            </option>
             <option value="연차">연차</option>
             <option value="반차">반차</option>
             <option value="병가">병가</option>
@@ -138,7 +157,9 @@ const Request: React.FunctionComponent = function Request() {
         <Label htmlFor={reason}>
           <LabelText>사유</LabelText>
           <Select value={reason} onChange={handleReasonChange}>
-            <option value="">선택하세요</option>
+            <option value="" id="placeholder">
+              선택하세요
+            </option>
             <option value="휴가">휴가</option>
             <option value="병원방문">병원방문</option>
             <option value="개인사유">개인사유</option>
@@ -148,10 +169,15 @@ const Request: React.FunctionComponent = function Request() {
         </Label>
         <Label htmlFor={notes}>
           <LabelText>메모</LabelText>
-          <Input type="text" value={notes} onChange={handleNotesChange} />
+          <NotesInput
+            id="notesInput"
+            type="text"
+            value={notes}
+            onChange={handleNotesChange}
+          />
         </Label>
         <ButtonContainer>
-          <Button type="submit">신청하기</Button>
+          <SubmitButton type="submit">신청하기</SubmitButton>
           <Button type="button">취소하기</Button>
         </ButtonContainer>
       </Form>
