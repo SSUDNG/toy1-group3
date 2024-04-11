@@ -5,7 +5,6 @@ import TAAListPage from "pages/TAAListPage";
 import MainPage from "./pages/MainPage";
 
 function App() {
-  console.log("hello");
   return (
     <div className="app">
       <Routes>
