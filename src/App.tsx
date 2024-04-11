@@ -1,6 +1,5 @@
 import { Route, Routes } from "react-router-dom";
 import React from "react";
-import "./App.css";
 import TAAListPage from "pages/TAAListPage";
 import MainPage from "./pages/MainPage";
 
