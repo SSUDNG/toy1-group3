@@ -1,0 +1,30 @@
+/* CSSModule.module.css */
+.headerContainer{
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: center;
+  gap:10px;
+}
+
+.selection{
+  width: 200px;
+}
+
+.itemContainer {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  border-color:black;
+  border-style: solid;
+  margin: 5px 0 5px 0;
+}
+
+.coreInfo {
+  display: flex;
+  gap: 10rem;
+}
+
+.contents {
+  margin-top: 5px;
+  font-size: 1.2rem;
+}
