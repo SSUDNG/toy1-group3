@@ -252,8 +252,8 @@ const ProfilePage: React.FC = () => {
               accept="image/*"
               onChange={handlePictureChange}
             />
-            <Button onClick={handleSaveEdit}>저장</Button>
-            <Button onClick={() => setEditModalOpen(false)}>취소</Button>
+            <Button onClick={handleSaveEdit}>저 장</Button>
+            <Button onClick={() => setEditModalOpen(false)}>취 소</Button>
           </ModalContent>
         </ModalContainer>
       )}
