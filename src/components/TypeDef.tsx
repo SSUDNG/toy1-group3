@@ -10,4 +10,5 @@ export type AttandanceInfo = {
   category: string;
   begin: Date;
   end: Date;
+  comment: string;
 };
