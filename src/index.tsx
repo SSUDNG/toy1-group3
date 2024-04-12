@@ -4,6 +4,8 @@ import "./index.css";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import app from "./firebase";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement,

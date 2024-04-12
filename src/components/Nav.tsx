@@ -8,9 +8,9 @@ import {
   signOut,
   User,
 } from "firebase/auth";
-
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import app from "../firebase";
+
+console.log(app);
 
 const Nav = () => {
   const userDataString = localStorage.getItem("userData");
