@@ -1,27 +1,19 @@
+import { Route, Routes } from "react-router-dom";
 import React from "react";
-import { Outlet, Route, Routes } from "react-router-dom";
-import Nav from "components/Nav";
+// import Nav from "components/Nav";
+import TAAListPage from "pages/TAAListPage";
 import TestPage from "./pages/TestPage/Test";
 import LoginPage from "./pages/LoginPage/Login";
-
-const Layout = () => {
-  return (
-    <div>
-      <Nav />
-
-      <Outlet />
-    </div>
-  );
-};
+import MainPage from "./pages/MainPage";
 
 function App() {
   return (
     <div className="app">
       <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<LoginPage />} />
-          <Route path="/main" element={<TestPage />} />
-        </Route>
+        <Route path="/" element={<MainPage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/TAA" element={<TAAListPage />} />
+        <Route path="/main" element={<TestPage />} />
       </Routes>
     </div>
   );

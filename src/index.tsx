@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import { BrowserRouter } from "react-router-dom";
+// eslint-disable-next-line import/no-named-as-default
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -11,11 +12,11 @@ const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement,
 );
 root.render(
-  <BrowserRouter>
-    <React.StrictMode>
+  <React.StrictMode>
+    <BrowserRouter>
       <App />
-    </React.StrictMode>
-  </BrowserRouter>,
+    </BrowserRouter>
+  </React.StrictMode>,
 );
 
 // If you want to start measuring performance in your app, pass a function
