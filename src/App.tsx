@@ -17,11 +17,8 @@ function App() {
         <Route path="/" element={<MainPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/TAA" element={<TAAListPage />} />
-
         <Route path="/profile" element={<ProfilePage />} />
-
         <Route path="/main" element={<TestPage />} />
-
       </Routes>
     </div>
   );
