@@ -1,8 +1,11 @@
 import { Route, Routes } from "react-router-dom";
 import React from "react";
-import Request from "pages/Request";
+// import Nav from "components/Nav";
 import TAAListPage from "pages/TAAListPage";
+import TestPage from "./pages/TestPage/Test";
+import LoginPage from "./pages/LoginPage/Login";
 import MainPage from "./pages/MainPage";
+import Request from "./pages/Request";
 
 function App() {
   return (
@@ -10,7 +13,9 @@ function App() {
       <Routes>
         <Route path="/request" element={<Request />} />
         <Route path="/" element={<MainPage />} />
+        <Route path="/login" element={<LoginPage />} />
         <Route path="/TAA" element={<TAAListPage />} />
+        <Route path="/main" element={<TestPage />} />
       </Routes>
     </div>
   );

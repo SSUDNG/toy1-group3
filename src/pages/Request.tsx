@@ -10,7 +10,7 @@ import {
 } from "@mui/material";
 import "./Request.css";
 
-const Request: React.FunctionComponent = function Request() {
+const Request: React.FunctionComponent = () => {
   const [vacationType, setVacationType] = useState("");
   const [startDate, setStartDate] = useState<Date | null>(null);
   const [endDate, setEndDate] = useState<Date | null>(null);
