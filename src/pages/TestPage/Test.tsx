@@ -1,7 +1,7 @@
 import React from "react";
 
-const index = () => {
+const Test = () => {
   return <div>메인</div>;
 };
 
-export default index;
+export default Test;

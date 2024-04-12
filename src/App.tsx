@@ -1,8 +1,8 @@
 import React from "react";
 import { Outlet, Route, Routes } from "react-router-dom";
 import Nav from "components/Nav";
-import TestPage from "./pages/TestPage";
-import LoginPage from "./pages/LoginPage";
+import TestPage from "./pages/TestPage/Test";
+import LoginPage from "./pages/LoginPage/Login";
 
 const Layout = () => {
   return (
