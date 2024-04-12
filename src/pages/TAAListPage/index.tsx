@@ -1,45 +1,54 @@
-import React from "react";
+import React, { useState } from "react";
 import Container from "@mui/material/Container";
 import { AttandanceInfo } from "components/TypeDef";
 import TAAHeader from "../../components/TAAHeader";
 import TAAList from "../../components/TAAList";
 
 function TAAListPage() {
+  const [selectedVacation, setSelectedVacation] = useState<string>("전체");
   const attendanceData: AttandanceInfo[] = [
     {
-      name: "SangHwa",
+      name: "김상화",
       key: 1,
-      category: "vacation",
+      category: "연차",
       begin: { year: 2024, month: 4, day: 9 },
       end: { year: 2024, month: 4, day: 10 },
+      comment: "휴가신청합니다~",
     },
     {
-      name: "MinSoo",
+      name: "김민수",
       key: 2,
-      category: "vacation",
+      category: "반차",
       begin: { year: 2024, month: 4, day: 11 },
-      end: { year: 2024, month: 4, day: 12 },
+      end: { year: 2024, month: 4, day: 11 },
+      comment: "휴가신청합니다~",
     },
     {
-      name: "Nicola",
+      name: "니콜라",
       key: 3,
-      category: "vacation",
+      category: "병가",
       begin: { year: 2024, month: 4, day: 13 },
       end: { year: 2024, month: 4, day: 14 },
+      comment: "휴가신청합니다~",
     },
     {
-      name: "SeungHeon",
+      name: "이승헌",
       key: 4,
-      category: "vacation",
+      category: "조퇴",
       begin: { year: 2024, month: 4, day: 13 },
       end: { year: 2024, month: 4, day: 14 },
+      comment: "휴가신청합니다~",
     },
   ];
+  const selectedData =
+    selectedVacation !== "전체"
+      ? attendanceData.filter((info) => info.category === selectedVacation)
+      : attendanceData;
 
   return (
     <Container>
-      <TAAHeader />
-      <TAAList TAAdata={attendanceData} />
+      <TAAHeader current={selectedVacation} onSelect={setSelectedVacation} />
+      <TAAList TAAdata={selectedData} />
     </Container>
   );
 }
