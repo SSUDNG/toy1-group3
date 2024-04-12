@@ -19,13 +19,6 @@ const Request: React.FunctionComponent = function Request() {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log("근태신청 완료:", {
-      vacationType,
-      startDate,
-      endDate,
-      reason,
-      notes,
-    });
   };
 
   const handleReset = () => {
