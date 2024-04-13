@@ -1,7 +1,15 @@
 import React from "react";
 
-const Test = () => {
-  return <div>메인</div>;
+interface TestProps {
+  handleSignOut: () => void;
+}
+
+const Test = ({ handleSignOut }: TestProps) => {
+  return (
+    <button type="button" onClick={handleSignOut}>
+      로그아웃
+    </button>
+  );
 };
 
 export default Test;
