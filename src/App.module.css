@@ -1,0 +1,23 @@
+.app{
+  display:flex;
+}
+
+.sidebar{
+  position: sticky;
+  top: 0;
+  background-color: #292a2d;
+  height: 100vh;
+  border-radius: 0 10px 10px 0;
+  padding: 0 20px 0 0;
+}
+
+.sidebar .ul .li .a{
+  color: white;
+  text-decoration: none;
+  list-style: none;
+}
+
+.main-content {
+  height: 100vh;
+  margin: 100px;
+}
