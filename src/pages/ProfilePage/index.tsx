@@ -1,5 +1,6 @@
 import React, { useState, useRef } from "react";
 import styled from "styled-components";
+import ProfileInfo from "components/ProfileInfo";
 import useOnClickOutside from "../../hooks/useOnClickOutside";
 
 interface ProfileData {
@@ -9,8 +10,8 @@ interface ProfileData {
   position: string;
   startTime: string | null;
   endTime: string | null;
-  status: string;
   profilePicture: string;
+  working: boolean;
 }
 
 const ProfileContainer = styled.div`
@@ -60,13 +61,6 @@ const EditInput = styled.input`
   margin-bottom: 10px;
 `;
 
-const ProfilePicture = styled.img`
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  margin-bottom: 20px;
-`;
-
 const ProfilePage: React.FC = () => {
   const [startModalOpen, setStartModalOpen] = useState<boolean>(false);
   const [endModalOpen, setEndModalOpen] = useState<boolean>(false);
@@ -79,8 +73,8 @@ const ProfilePage: React.FC = () => {
     position: "FE",
     startTime: null,
     endTime: null,
-    status: "근무 중 아님",
     profilePicture: "default.jpg",
+    working: false,
   });
   const [editProfile, setEditProfile] = useState<Partial<ProfileData>>({
     name: "",
@@ -99,7 +93,7 @@ const ProfilePage: React.FC = () => {
     setProfileData((prevData) => ({
       ...prevData,
       startTime: currentTime,
-      status: "근무 중",
+      working: true,
     }));
     setStartModalOpen(false);
     setWorking(true);
@@ -114,7 +108,7 @@ const ProfilePage: React.FC = () => {
     setProfileData((prevData) => ({
       ...prevData,
       endTime: currentTime,
-      status: "Not Working",
+      working: false,
     }));
     setEndModalOpen(false);
     setWorking(false);
@@ -167,15 +161,7 @@ const ProfilePage: React.FC = () => {
   return (
     <ProfileContainer>
       <h1>Profile</h1>
-      <ProfilePicture src={profileData.profilePicture} alt="Profile" />
-      <h2>{profileData.name}</h2>
-      <p>Phone: {profileData.phoneNumber}</p>
-      <p>Email: {profileData.email}</p>
-      <p>Position: {profileData.position}</p>
-      <p>출근시간: {profileData.startTime ? profileData.startTime : "-"}</p>
-      <p>퇴근시간: {profileData.endTime ? profileData.endTime : "-"}</p>
-      <p>근무상태: {profileData.status}</p>
-
+      <ProfileInfo profileData={profileData} />
       {!working ? (
         <Button onClick={handleStartWork}>근무 시작</Button>
       ) : (
