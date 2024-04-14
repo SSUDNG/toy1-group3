@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
+import SideBar from "components/SideBar";
 import TAAListPage from "pages/TAAListPage";
 import {
   getAuth,
@@ -14,7 +15,8 @@ import ProfilePage from "./pages/ProfilePage";
 import TestPage from "./pages/TestPage/Test";
 import LoginPage from "./pages/LoginPage/Login";
 import MainPage from "./pages/MainPage";
-import Request from "./pages/Request";
+import Request from "./pages/RequestPage";
+import styles from "./App.module.css";
 import app from "./firebase";
 
 console.log(app);
@@ -63,18 +65,29 @@ function App() {
       });
   };
   return (
-    <div className="app">
-      <Routes>
-        <Route path="/request" element={<Request />} />
-        <Route path="/" element={<MainPage />} />
-        <Route path="/login" element={<LoginPage handleAuth={handleAuth} />} />
-        <Route path="/TAA" element={<TAAListPage />} />
-        <Route path="/profile" element={<ProfilePage />} />
-        <Route
-          path="/test"
-          element={<TestPage handleSignOut={handleSignOut} />}
-        />
-      </Routes>
+    <div className={styles.app}>
+      {pathname !== "/login" && (
+        <nav className={styles.sidebar}>
+          <SideBar />
+        </nav>
+      )}
+
+      <div className="main-content">
+        <Routes>
+          <Route
+            path="/login"
+            element={<LoginPage handleAuth={handleAuth} />}
+          />
+          <Route path="/" element={<MainPage />} />
+          <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/TAA" element={<TAAListPage />} />
+          <Route path="/request" element={<Request />} />
+          <Route
+            path="/test"
+            element={<TestPage handleSignOut={handleSignOut} />}
+          />
+        </Routes>
+      </div>
     </div>
   );
 }
