@@ -1,6 +1,6 @@
 import React from "react";
 import { Container } from "@mui/material";
-import styles from "./TAA.module.css";
+import styles from "../pages/TAAListPage/TAA.module.css";
 import { AttandanceInfo } from "./TypeDef";
 
 type TAAListProps = {

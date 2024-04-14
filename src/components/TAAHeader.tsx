@@ -6,7 +6,7 @@ import {
   SelectChangeEvent,
 } from "@mui/material";
 import React from "react";
-import styles from "./TAA.module.css";
+import styles from "../pages/TAAListPage/TAA.module.css";
 
 interface TAAHeaderProps {
   current: string;
