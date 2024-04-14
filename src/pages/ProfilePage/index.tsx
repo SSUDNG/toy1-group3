@@ -1,6 +1,7 @@
 import React, { useState, useRef } from "react";
 import styled from "styled-components";
 import ProfileInfo from "components/ProfileInfo";
+import { Button } from "@mui/material";
 import useOnClickOutside from "../../hooks/useOnClickOutside";
 
 interface ProfileData {
@@ -10,32 +11,14 @@ interface ProfileData {
   position: string;
   startTime: string | null;
   endTime: string | null;
-  profilePicture: string;
+  photoURL: string;
   working: boolean;
 }
 
 const ProfileContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  position: fixed;
-  width: 95vw;
-  height: 95vh;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: grey;
-  border-radius: 50px;
-`;
-
-const Button = styled.button`
-  padding: 10px 20px;
-  margin: 10px;
-  background-color: royalblue;
-  color: white;
-  border: none;
-  cursor: pointer;
+  position: relative;
+  width: 1000px;
+  height: 100%;
 `;
 
 const ModalContainer = styled.div`
@@ -62,8 +45,7 @@ const EditInput = styled.input`
 `;
 
 const ProfilePage: React.FC = () => {
-  const [startModalOpen, setStartModalOpen] = useState<boolean>(false);
-  const [endModalOpen, setEndModalOpen] = useState<boolean>(false);
+  const [confirmModalOpen, setConfirmModalOpen] = useState<boolean>(false);
   const [editModalOpen, setEditModalOpen] = useState<boolean>(false);
   const [working, setWorking] = useState<boolean>(false);
   const [profileData, setProfileData] = useState<ProfileData>({
@@ -73,7 +55,7 @@ const ProfilePage: React.FC = () => {
     position: "FE",
     startTime: null,
     endTime: null,
-    profilePicture: "default.jpg",
+    photoURL: "default.jpg",
     working: false,
   });
   const [editProfile, setEditProfile] = useState<Partial<ProfileData>>({
@@ -81,12 +63,8 @@ const ProfilePage: React.FC = () => {
     phoneNumber: "",
     email: "",
     position: "",
-    profilePicture: "",
+    photoURL: "",
   });
-
-  const handleStartWork = () => {
-    setStartModalOpen(true);
-  };
 
   const handleConfirmStartWork = () => {
     const currentTime = new Date().toLocaleTimeString();
@@ -95,12 +73,8 @@ const ProfilePage: React.FC = () => {
       startTime: currentTime,
       working: true,
     }));
-    setStartModalOpen(false);
+    setConfirmModalOpen(false);
     setWorking(true);
-  };
-
-  const handleEndWork = () => {
-    setEndModalOpen(true);
   };
 
   const handleConfirmEndWork = () => {
@@ -110,7 +84,7 @@ const ProfilePage: React.FC = () => {
       endTime: currentTime,
       working: false,
     }));
-    setEndModalOpen(false);
+    setConfirmModalOpen(false);
     setWorking(false);
   };
 
@@ -120,7 +94,7 @@ const ProfilePage: React.FC = () => {
       phoneNumber: profileData.phoneNumber,
       email: profileData.email,
       position: profileData.position,
-      profilePicture: profileData.profilePicture,
+      photoURL: profileData.photoURL,
     });
     setEditModalOpen(true);
   };
@@ -132,7 +106,7 @@ const ProfilePage: React.FC = () => {
       phoneNumber: editProfile.phoneNumber || profileData.phoneNumber,
       email: editProfile.email || profileData.email,
       position: editProfile.position || profileData.position,
-      profilePicture: editProfile.profilePicture || profileData.profilePicture,
+      photoURL: editProfile.photoURL || profileData.photoURL,
     });
     setEditModalOpen(false);
   };
@@ -143,7 +117,7 @@ const ProfilePage: React.FC = () => {
     reader.onloadend = () => {
       setEditProfile((prevProfile) => ({
         ...prevProfile,
-        profilePicture: reader.result as string,
+        photoURL: reader.result as string,
       }));
     };
     if (file) {
@@ -153,9 +127,8 @@ const ProfilePage: React.FC = () => {
   const ref = useRef<HTMLDivElement>(null);
 
   useOnClickOutside(ref, () => {
-    setStartModalOpen(false);
+    setConfirmModalOpen(false);
     setEditModalOpen(false);
-    setEndModalOpen(false);
   });
 
   return (
@@ -163,33 +136,30 @@ const ProfilePage: React.FC = () => {
       <h1>Profile</h1>
       <ProfileInfo profileData={profileData} />
       {!working ? (
-        <Button onClick={handleStartWork}>근무 시작</Button>
+        <Button onClick={() => setConfirmModalOpen(true)}>근무 시작</Button>
       ) : (
-        <Button onClick={handleEndWork}>근무 종료</Button>
+        <Button onClick={() => setConfirmModalOpen(true)}>근무 종료</Button>
       )}
 
       <Button onClick={handleEditProfile}>편집</Button>
 
-      {startModalOpen && (
+      {confirmModalOpen && (
         <ModalContainer>
           <ModalContent ref={ref}>
-            <p>근무를 시작하시겠습니까?</p>
-            <Button onClick={handleConfirmStartWork}>확인</Button>
-            <Button onClick={() => setStartModalOpen(false)}>취소</Button>
+            {!working ? (
+              <p>근무를 시작하시겠습니까?</p>
+            ) : (
+              <p>근무를 종료하시겠습니까?</p>
+            )}
+            <Button
+              onClick={!working ? handleConfirmStartWork : handleConfirmEndWork}
+            >
+              확인
+            </Button>
+            <Button onClick={() => setConfirmModalOpen(false)}>취소</Button>
           </ModalContent>
         </ModalContainer>
       )}
-
-      {endModalOpen && (
-        <ModalContainer>
-          <ModalContent ref={ref}>
-            <p>근무를 종료하시겠습니까?</p>
-            <Button onClick={handleConfirmEndWork}>확인</Button>
-            <Button onClick={() => setEndModalOpen(false)}>취소</Button>
-          </ModalContent>
-        </ModalContainer>
-      )}
-
       {editModalOpen && (
         <ModalContainer>
           <ModalContent ref={ref}>

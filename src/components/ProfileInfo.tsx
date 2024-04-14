@@ -8,7 +8,7 @@ interface ProfileData {
   position: string;
   startTime: string | null;
   endTime: string | null;
-  profilePicture: string;
+  photoURL: string;
   working: boolean;
 }
 
@@ -22,11 +22,10 @@ const ProfileInfo: React.FC<{ profileData: ProfileData }> = ({
           sx={{
             display: "flex",
             flexDirection: "column",
-            alignItems: "center",
           }}
         >
           <Avatar
-            src={profileData.profilePicture ? profileData.profilePicture : ""}
+            src={profileData.photoURL ? profileData.photoURL : ""}
             sx={{
               width: 111,
               height: 111,
