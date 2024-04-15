@@ -1,48 +1,10 @@
 import React, { useState, useRef } from "react";
-import styled from "styled-components";
 import ProfileInfo from "components/ProfileInfo";
-import { Button } from "@mui/material";
+import { Box, Button, Container } from "@mui/material";
+import { ProfileData } from "components/TypeDef";
+import EditModal from "components/EditModal";
 import useOnClickOutside from "../../hooks/useOnClickOutside";
-
-interface ProfileData {
-  name: string;
-  phoneNumber: string;
-  email: string;
-  position: string;
-  startTime: string | null;
-  endTime: string | null;
-  photoURL: string;
-  working: boolean;
-}
-
-const ProfileContainer = styled.div`
-  position: relative;
-  width: 1000px;
-  height: 100%;
-`;
-
-const ModalContainer = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border-radius: 50px;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-const ModalContent = styled.div`
-  background-color: white;
-  padding: 20px;
-  border-radius: 5px;
-`;
-
-const EditInput = styled.input`
-  margin-bottom: 10px;
-`;
+import styles from "./profilePage.module.css";
 
 const ProfilePage: React.FC = () => {
   const [confirmModalOpen, setConfirmModalOpen] = useState<boolean>(false);
@@ -98,32 +60,6 @@ const ProfilePage: React.FC = () => {
     });
     setEditModalOpen(true);
   };
-
-  const handleSaveEdit = () => {
-    setProfileData({
-      ...profileData,
-      name: editProfile.name || profileData.name,
-      phoneNumber: editProfile.phoneNumber || profileData.phoneNumber,
-      email: editProfile.email || profileData.email,
-      position: editProfile.position || profileData.position,
-      photoURL: editProfile.photoURL || profileData.photoURL,
-    });
-    setEditModalOpen(false);
-  };
-
-  const handlePictureChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      setEditProfile((prevProfile) => ({
-        ...prevProfile,
-        photoURL: reader.result as string,
-      }));
-    };
-    if (file) {
-      reader.readAsDataURL(file);
-    }
-  };
   const ref = useRef<HTMLDivElement>(null);
 
   useOnClickOutside(ref, () => {
@@ -132,7 +68,7 @@ const ProfilePage: React.FC = () => {
   });
 
   return (
-    <ProfileContainer>
+    <Container className={styles.profilePage}>
       <h1>Profile</h1>
       <ProfileInfo profileData={profileData} />
       {!working ? (
@@ -144,8 +80,8 @@ const ProfilePage: React.FC = () => {
       <Button onClick={handleEditProfile}>편집</Button>
 
       {confirmModalOpen && (
-        <ModalContainer>
-          <ModalContent ref={ref}>
+        <Container>
+          <Box ref={ref}>
             {!working ? (
               <p>근무를 시작하시겠습니까?</p>
             ) : (
@@ -157,63 +93,18 @@ const ProfilePage: React.FC = () => {
               확인
             </Button>
             <Button onClick={() => setConfirmModalOpen(false)}>취소</Button>
-          </ModalContent>
-        </ModalContainer>
+          </Box>
+        </Container>
       )}
       {editModalOpen && (
-        <ModalContainer>
-          <ModalContent ref={ref}>
-            <EditInput
-              type="text"
-              value={editProfile.name || ""}
-              onChange={(e) =>
-                setEditProfile((prevProfile) => ({
-                  ...prevProfile,
-                  name: e.target.value,
-                }))
-              }
-            />
-            <EditInput
-              type="text"
-              value={editProfile.phoneNumber || ""}
-              onChange={(e) =>
-                setEditProfile((prevProfile) => ({
-                  ...prevProfile,
-                  phoneNumber: e.target.value,
-                }))
-              }
-            />
-            <EditInput
-              type="text"
-              value={editProfile.email || ""}
-              onChange={(e) =>
-                setEditProfile((prevProfile) => ({
-                  ...prevProfile,
-                  email: e.target.value,
-                }))
-              }
-            />
-            <EditInput
-              type="text"
-              value={editProfile.position || ""}
-              onChange={(e) =>
-                setEditProfile((prevProfile) => ({
-                  ...prevProfile,
-                  position: e.target.value,
-                }))
-              }
-            />
-            <input
-              type="file"
-              accept="image/*"
-              onChange={handlePictureChange}
-            />
-            <Button onClick={handleSaveEdit}>저 장</Button>
-            <Button onClick={() => setEditModalOpen(false)}>취 소</Button>
-          </ModalContent>
-        </ModalContainer>
+        <EditModal
+          editProfile={editProfile}
+          setProfileData={setProfileData}
+          setEditProfile={setEditProfile}
+          setEditModalOpen={setEditModalOpen}
+        />
       )}
-    </ProfileContainer>
+    </Container>
   );
 };
 
