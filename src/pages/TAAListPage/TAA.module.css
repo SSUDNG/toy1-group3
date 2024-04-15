@@ -1,6 +1,12 @@
-/* CSSModule.module.css */
+.TAAcontainer{
+  border-radius: 5px;
+  width: 100%;
+  margin: 40px;
+  background-color: red;
+}
+
 .headerContainer{
-  margin-bottom: 15px;
+  margin-bottom: 20px;
   display: flex;
   justify-content: center;
   gap:10px;
@@ -11,12 +17,10 @@
 }
 
 .itemContainer {
-  background-color: #fff;
-  padding: 20px;
   border-radius: 5px;
   border-color:black;
   border-style: solid;
-  margin: 5px 0 5px 0;
+  margin-bottom: 20px;
 }
 
 .coreInfo {

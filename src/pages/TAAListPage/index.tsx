@@ -3,6 +3,7 @@ import Container from "@mui/material/Container";
 import { AttandanceInfo } from "components/TypeDef";
 import TAAHeader from "../../components/TAAHeader";
 import TAAList from "../../components/TAAList";
+import styles from "./TAA.module.css";
 
 function TAAListPage() {
   const [selectedVacation, setSelectedVacation] = useState<string>("전체");
@@ -46,7 +47,7 @@ function TAAListPage() {
       : attendanceData;
 
   return (
-    <Container>
+    <Container className={styles.TAAcontainer}>
       <TAAHeader current={selectedVacation} onSelect={setSelectedVacation} />
       <TAAList TAAdata={selectedData} />
     </Container>

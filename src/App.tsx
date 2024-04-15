@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
-import SideBar from "components/SideBar";
-import TAAListPage from "pages/TAAListPage";
 import {
   getAuth,
   GoogleAuthProvider,
@@ -11,6 +9,8 @@ import {
   User,
 } from "firebase/auth";
 
+import SideBar from "components/SideBar";
+import TAAListPage from "pages/TAAListPage";
 import ProfilePage from "./pages/ProfilePage";
 import TestPage from "./pages/TestPage/Test";
 import LoginPage from "./pages/LoginPage/Login";
@@ -72,7 +72,7 @@ function App() {
         </nav>
       )}
 
-      <div className="main-content">
+      <div className={styles.mainContent}>
         <Routes>
           <Route
             path="/login"
