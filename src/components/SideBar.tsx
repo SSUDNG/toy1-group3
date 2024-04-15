@@ -1,27 +1,55 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import {
+  SpaceDashboardOutlined,
+  CalendarMonthOutlined,
+  EditCalendarOutlined,
+  MarkChatUnreadOutlined,
+  AccountCircleOutlined,
+  LogoutOutlined,
+} from "@mui/icons-material";
 
-const SideBar = () => {
+import styles from "./SideBar.module.css";
+
+const menuItems = [
+  { path: "/", icon: <SpaceDashboardOutlined />, label: "Dashboard" },
+  { path: "/TAA", icon: <CalendarMonthOutlined />, label: "Vacation" },
+  { path: "/request", icon: <EditCalendarOutlined />, label: "Request" },
+  { path: "/news", icon: <MarkChatUnreadOutlined />, label: "News" },
+  { path: "/profile", icon: <AccountCircleOutlined />, label: "Profile" },
+];
+
+interface SideProps {
+  handleSignOut: () => void;
+}
+
+const SideBar = ({ handleSignOut }: SideProps) => {
+  const location = useLocation();
+
   return (
-    <div className="sidebar">
+    <div className={styles.sideBar}>
       <ul>
+        {menuItems.map((menuItem) => (
+          <li
+            key={menuItem.label}
+            className={location.pathname === menuItem.path ? styles.on : ""}
+          >
+            <Link to={menuItem.path}>
+              {menuItem.icon}
+              <span>{menuItem.label}</span>
+            </Link>
+          </li>
+        ))}
         <li>
-          <Link to="/">Home</Link>
-        </li>
-        <li>
-          <Link to="/profile">프로필</Link>
-        </li>
-        <li>
-          <Link to="/TAA">휴가신청목록</Link>
-        </li>
-        <li>
-          <Link to="/request">휴가신청</Link>
-        </li>
-        <li>
-          <Link to="/main">테스트</Link>
-        </li>
-        <li>
-          <Link to="/login">로그인</Link>
+          <button
+            type="button"
+            className={styles.logoutBtn}
+            onClick={handleSignOut}
+          >
+            <LogoutOutlined />
+            <span>Logout</span>
+          </button>
         </li>
       </ul>
     </div>
