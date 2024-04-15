@@ -4,21 +4,24 @@ import "./index.css";
 import { BrowserRouter } from "react-router-dom";
 // eslint-disable-next-line import/no-named-as-default
 import CssBaseline from "@mui/material/CssBaseline";
+import { ThemeProvider } from "@mui/material";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import app from "./firebase";
+import theme from "./defaultTheme";
 
 const root = ReactDOM.createRoot(
-  document.getElementById("root") as HTMLElement,
+  // eslint-disable-next-line prettier/prettier
+  document.getElementById("root") as HTMLElement
 );
 root.render(
-  <React.StrictMode>
+  <ThemeProvider theme={theme}>
     <BrowserRouter>
       <CssBaseline />
       <App />
     </BrowserRouter>
-  </React.StrictMode>,
+  </ThemeProvider>,
 );
 
 // If you want to start measuring performance in your app, pass a function

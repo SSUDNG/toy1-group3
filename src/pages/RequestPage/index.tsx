@@ -8,7 +8,7 @@ import {
   InputLabel,
   Grid,
 } from "@mui/material";
-import "./Request.css";
+import styles from "./Request.module.css";
 
 const Request: React.FunctionComponent = () => {
   const [vacationType, setVacationType] = useState("");
@@ -30,9 +30,9 @@ const Request: React.FunctionComponent = () => {
   };
 
   return (
-    <form className="form-container" onSubmit={handleSubmit}>
+    <form className={styles.form} onSubmit={handleSubmit}>
       <h1>부재 신청</h1>
-      <Grid className="grid-container" container spacing={2}>
+      <Grid className={styles.grid} container spacing={2}>
         <Grid item xs={12}>
           <FormControl fullWidth>
             <InputLabel>휴가 종류</InputLabel>
@@ -103,7 +103,7 @@ const Request: React.FunctionComponent = () => {
           </Button>
         </Grid>
         <Grid item xs={6}>
-          <Button variant="contained" color="secondary" onClick={handleReset}>
+          <Button variant="outlined" color="secondary" onClick={handleReset}>
             취소하기
           </Button>
         </Grid>
