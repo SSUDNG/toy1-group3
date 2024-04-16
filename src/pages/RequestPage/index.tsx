@@ -1,13 +1,6 @@
 import React, { useState } from "react";
-import {
-  Button,
-  TextField,
-  Select,
-  MenuItem,
-  FormControl,
-  InputLabel,
-  Grid,
-} from "@mui/material";
+import { Button, TextField, MenuItem, FormControl, Grid } from "@mui/material";
+import Typography from "@mui/material/Typography";
 import styles from "./Request.module.css";
 
 const Request: React.FunctionComponent = () => {
@@ -31,12 +24,13 @@ const Request: React.FunctionComponent = () => {
 
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
-      <h1>부재 신청</h1>
+      <Typography variant="h1">부재 신청</Typography>
       <Grid className={styles.grid} container spacing={2}>
         <Grid item xs={12}>
           <FormControl fullWidth>
-            <InputLabel>휴가 종류</InputLabel>
-            <Select
+            <TextField
+              select
+              label="휴가 종류"
               value={vacationType}
               onChange={(e) => setVacationType(e.target.value as string)}
             >
@@ -45,7 +39,7 @@ const Request: React.FunctionComponent = () => {
               <MenuItem value="병가">병가</MenuItem>
               <MenuItem value="조퇴">조퇴</MenuItem>
               <MenuItem value="기타">기타</MenuItem>
-            </Select>
+            </TextField>
           </FormControl>
         </Grid>
         <Grid item xs={6}>
@@ -53,8 +47,10 @@ const Request: React.FunctionComponent = () => {
             label="시작일"
             type="date"
             fullWidth
-            value={startDate?.toISOString().split("T")[0]}
-            onChange={(e) => setStartDate(new Date(e.target.value))}
+            value={startDate ? startDate.toISOString().split("T")[0] : ""}
+            onChange={(e) =>
+              setStartDate(e.target.value ? new Date(e.target.value) : null)
+            }
             InputLabelProps={{
               shrink: true,
             }}
@@ -65,8 +61,10 @@ const Request: React.FunctionComponent = () => {
             label="종료일"
             type="date"
             fullWidth
-            value={endDate?.toISOString().split("T")[0]}
-            onChange={(e) => setEndDate(new Date(e.target.value))}
+            value={endDate ? endDate.toISOString().split("T")[0] : ""}
+            onChange={(e) =>
+              setEndDate(e.target.value ? new Date(e.target.value) : null)
+            }
             InputLabelProps={{
               shrink: true,
             }}
@@ -74,17 +72,18 @@ const Request: React.FunctionComponent = () => {
         </Grid>
         <Grid item xs={12}>
           <FormControl fullWidth>
-            <InputLabel>사유</InputLabel>
-            <Select
+            <TextField
+              select
+              label="사유"
               value={reason}
               onChange={(e) => setReason(e.target.value as string)}
             >
-              <MenuItem value="휴가">연차</MenuItem>
-              <MenuItem value="병원방문">반차</MenuItem>
-              <MenuItem value="개인사유">병가</MenuItem>
-              <MenuItem value="비상">조퇴</MenuItem>
+              <MenuItem value="휴가">휴가</MenuItem>
+              <MenuItem value="병원방문">병원방문</MenuItem>
+              <MenuItem value="개인사유">개인사유</MenuItem>
+              <MenuItem value="비상">비상</MenuItem>
               <MenuItem value="기타">기타</MenuItem>
-            </Select>
+            </TextField>
           </FormControl>
         </Grid>
         <Grid item xs={12}>
@@ -98,9 +97,7 @@ const Request: React.FunctionComponent = () => {
           />
         </Grid>
         <Grid item xs={6}>
-          <Button variant="contained" color="primary" type="submit">
-            신청하기
-          </Button>
+          <Button type="submit">신청하기</Button>
         </Grid>
         <Grid item xs={6}>
           <Button variant="outlined" color="secondary" onClick={handleReset}>
