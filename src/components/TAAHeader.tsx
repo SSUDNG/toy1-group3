@@ -6,6 +6,7 @@ import {
   FormControl,
 } from "@mui/material";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import styles from "../pages/TAAListPage/TAA.module.css";
 
 interface TAAHeaderProps {
@@ -16,6 +17,10 @@ interface TAAHeaderProps {
 function TAAHeader({ current, onSelect }: TAAHeaderProps) {
   const selectType = (e: SelectChangeEvent) => {
     onSelect(e.target.value);
+  };
+  const navigate = useNavigate();
+  const goToResist = () => {
+    navigate("/request");
   };
 
   return (
@@ -35,7 +40,14 @@ function TAAHeader({ current, onSelect }: TAAHeaderProps) {
           </Select>
         </FormControl>
 
-        <Button variant="contained" size="medium" className={styles.btn}>
+        <Button
+          variant="contained"
+          size="medium"
+          className={styles.btn}
+          onClick={() => {
+            goToResist();
+          }}
+        >
           근태신청하기
         </Button>
       </div>
