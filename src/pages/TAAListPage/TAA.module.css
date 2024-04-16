@@ -1,34 +1,30 @@
 .TAAcontainer{
-  border-radius: 5px;
-  width: 100%;
   margin: 40px;
-  background-color: red;
+  padding: 40px;
+  width: 100%;
+  background-color: #fff;
+  border-radius: 20px;
+  border: 1px solid #EEEEEE;
 }
 
 .headerContainer{
-  margin-bottom: 20px;
+  margin-left: 0;
+  padding:0;
   display: flex;
-  justify-content: center;
-  gap:10px;
 }
 
-.selection{
-  width: 200px;
+.headerContainer .title{
+  padding: 0;
+  margin-left: 0;
+  margin: 0;
+  width:50%;
 }
 
-.itemContainer {
-  border-radius: 5px;
-  border-color:black;
-  border-style: solid;
-  margin-bottom: 20px;
-}
-
-.coreInfo {
+.headerContainer .right{
   display: flex;
-  gap: 10rem;
-}
-
-.contents {
-  margin-top: 5px;
-  font-size: 1.2rem;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0;
+  margin: 0;
+  width:50%;
 }

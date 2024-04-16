@@ -1,18 +1,7 @@
-.app{
-  display:flex;
+.app {
+  display: flex;
 }
-
-.sidebar{
-  position: sticky;
-  top: 0;
-  background-color: #292a2d;
-  height: 100vh;
-  border-radius: 0 10px 10px 0;
-  padding: 0 20px 0 0;
-}
-
-.mainContent {
-  width: 100%;
+.main-content {
   height: 100vh;
   background-color: #fafafa;
 }

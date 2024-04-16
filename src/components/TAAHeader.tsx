@@ -4,6 +4,7 @@ import {
   Select,
   MenuItem,
   SelectChangeEvent,
+  FormControl,
 } from "@mui/material";
 import React from "react";
 import styles from "../pages/TAAListPage/TAA.module.css";
@@ -20,20 +21,25 @@ function TAAHeader({ current, onSelect }: TAAHeaderProps) {
 
   return (
     <Container className={styles.headerContainer}>
-      <h1>근태신청 목록</h1>
+      <Container className={styles.title}>
+        <h1>근태신청 목록</h1>
+      </Container>
+      <Container className={styles.right}>
+        <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
+          <Select value={current} onChange={selectType}>
+            <MenuItem value="전체">전체</MenuItem>
+            <MenuItem value="연차">연차</MenuItem>
+            <MenuItem value="반차">반차</MenuItem>
+            <MenuItem value="병가">병가</MenuItem>
+            <MenuItem value="조퇴">조퇴</MenuItem>
+            <MenuItem value="기타">기타</MenuItem>
+          </Select>
+        </FormControl>
 
-      <Select value={current} onChange={selectType}>
-        <MenuItem value="전체">전체</MenuItem>
-        <MenuItem value="연차">연차</MenuItem>
-        <MenuItem value="반차">반차</MenuItem>
-        <MenuItem value="병가">병가</MenuItem>
-        <MenuItem value="조퇴">조퇴</MenuItem>
-        <MenuItem value="기타">기타</MenuItem>
-      </Select>
-
-      <Button variant="contained" size="large" className={styles.btn}>
-        근태신청하기
-      </Button>
+        <Button variant="contained" size="small">
+          근태신청하기
+        </Button>
+      </Container>
     </Container>
   );
 }

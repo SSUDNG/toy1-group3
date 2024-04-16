@@ -12,7 +12,6 @@ import {
 import SideBar from "components/SideBar";
 import TAAListPage from "pages/TAAListPage";
 import ProfilePage from "./pages/ProfilePage";
-import TestPage from "./pages/TestPage/Test";
 import LoginPage from "./pages/LoginPage/Login";
 import MainPage from "./pages/MainPage";
 import Request from "./pages/RequestPage";
@@ -34,9 +33,8 @@ function App() {
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        console.log(user, "user");
         if (pathname === "/login") {
-          navigate("/test");
+          navigate("/");
         }
       } else {
         navigate("/login");
@@ -67,8 +65,8 @@ function App() {
   return (
     <div className={styles.app}>
       {pathname !== "/login" && (
-        <nav className={styles.sidebar}>
-          <SideBar />
+        <nav>
+          <SideBar handleSignOut={handleSignOut} />
         </nav>
       )}
 
@@ -82,10 +80,6 @@ function App() {
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/TAA" element={<TAAListPage />} />
           <Route path="/request" element={<Request />} />
-          <Route
-            path="/test"
-            element={<TestPage handleSignOut={handleSignOut} />}
-          />
         </Routes>
       </div>
     </div>
