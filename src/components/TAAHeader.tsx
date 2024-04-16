@@ -4,6 +4,7 @@ import {
   MenuItem,
   SelectChangeEvent,
   FormControl,
+  Typography,
 } from "@mui/material";
 import React from "react";
 import { useNavigate } from "react-router-dom";
@@ -26,11 +27,15 @@ function TAAHeader({ current, onSelect }: TAAHeaderProps) {
   return (
     <div className={styles.headerContainer}>
       <div className={styles.title}>
-        <h1>근태신청 목록</h1>
+        <Typography variant="h1">근태신청 목록</Typography>
       </div>
       <div className={styles.right}>
-        <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
-          <Select value={current} onChange={selectType}>
+        <FormControl sx={{ m: 0, minWidth: 120 }} size="small">
+          <Select
+            value={current}
+            onChange={selectType}
+            className={styles.selection}
+          >
             <MenuItem value="전체">전체</MenuItem>
             <MenuItem value="연차">연차</MenuItem>
             <MenuItem value="반차">반차</MenuItem>
