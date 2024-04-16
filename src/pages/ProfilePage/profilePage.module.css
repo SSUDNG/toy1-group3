@@ -6,32 +6,50 @@
   border-radius: 20px;
   border: 1px solid #EEEEEE;
 }
-.infoContainer {
-  padding: 20px;
-}
 .photoBox {
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 }
 .photoBox img{
-  width: 200px;
-  height: 200px;
+  width: 280px;
+  height: 280px;
   border-radius: 20px;
   margin-bottom: 20px;
+  overflow: hidden;
 }
-.infoBox {
-  margin: 20px 0 0 20px;
+.infoContainer {
+  margin-bottom: 20px;
 }
-.infoBox .textField {
-  width: 300px;
+.infoItem {
+  min-width: 300px;
+  height: 80px;
+  background-color: #FAFAFA;
+  border-radius: 20px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px
+}
+.infoItem span:nth-child(1) {
+position: absolute;
+top: 8px;
+left: 8px;
+color: #BDBDBD;
+}
+.infoItem span:nth-child(2) {
+  font-size: 20px;
+}
+.workBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .confirmModal {
-  width: 300px;
-  height: 200px;
-  position:fixed;
-  background-color: #fff;
+  padding: 50px;
+  background-color: #FAFAFA;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -39,19 +57,55 @@
   border-radius: 20px;
   border: 1px solid #EEEEEE;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-
-
-  z-index: 2;
-}
-.editModal {
   position: absolute;
+}
+.modalBg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
   top: 0;
   left: 0;
-  min-width: 700px;
-  height: 100%;
-  border-radius: 20px;
-  background-color: #fff;
+  backdrop-filter: blur(5px);
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.editModal {
+  padding: 40px;
+  border-radius: 20px;
+  background-color: #fff;
+  border: 1px solid #EEEEEE;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+.editModalBody {
+  display: flex;
+}
+.editModalBodyInput {
+  width: 300px;
+  margin: 20px
+}
+.editModalBodyInput div div {
+  width: 100%;
+}
+.modalBot{
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}
+/* .editModal input {
+  width: 100%
+} */
+.uploadInput {
+  display: none;
+}
+.InputLabel {
+  width: 60px;
+  height: 60px;
+  height: 60px;
+  background: #90a4ae;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
 }

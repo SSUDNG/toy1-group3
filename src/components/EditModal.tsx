@@ -1,12 +1,7 @@
-import React from "react";
-import {
-  Box,
-  Button,
-  Container,
-  Grid,
-  TextField,
-  Typography,
-} from "@mui/material";
+import React, { useRef } from "react";
+import { Box, Button, TextField, Typography } from "@mui/material";
+import UploadFileIcon from "@mui/icons-material/UploadFile";
+import useOnClickOutside from "hooks/useOnClickOutside";
 import { ProfileData } from "./TypeDef";
 import styles from "../pages/ProfilePage/profilePage.module.css";
 
@@ -68,68 +63,78 @@ const EditModal: React.FC<EditModalProps> = ({
     }
   };
 
+  const ref = useRef<HTMLDivElement>(null);
+
+  useOnClickOutside(ref, () => {
+    setEditModalOpen(false);
+  });
   return (
-    <Container className={styles.editModal}>
-      <Grid container spacing={2}>
-        <Grid item xs={6}>
-          <Box className={styles.photoBox}>
+    <div className={styles.modalBg}>
+      <div className={styles.editModal} ref={ref}>
+        <h1>프로필 편집</h1>
+        <div className={styles.editModalBody}>
+          <div className={styles.photoBox}>
             <img
               src={
-                profileData.photoURL
-                  ? profileData.photoURL
+                editProfile.photoURL
+                  ? editProfile.photoURL
                   : "/images/profileDefault.jpeg"
               }
               alt={profileData.name}
             />
-            <input
-              type="file"
-              accept="image/*"
-              onChange={handlePictureChange}
-            />
-          </Box>
-        </Grid>
-        <Grid item xs={6}>
-          <Box>
-            <Typography variant="h6">Name</Typography>
-            <TextField
-              type="text"
-              value={editProfile.name || ""}
-              className={styles.textField}
-              onChange={(e) => handleChange("name", e.target.value)}
-            />
-          </Box>
-          <Box>
-            <Typography variant="h6">Phone</Typography>
-            <TextField
-              type="text"
-              value={editProfile.phoneNumber || ""}
-              className={styles.textField}
-              onChange={(e) => handleChange("phoneNumber", e.target.value)}
-            />
-          </Box>
-          <Box>
-            <Typography variant="h6">Email</Typography>
-            <TextField
-              type="text"
-              value={editProfile.email || ""}
-              className={styles.textField}
-              onChange={(e) => handleChange("email", e.target.value)}
-            />
-          </Box>
-          <Box>
-            <Typography variant="h6">Position</Typography>
-            <TextField
-              type="text"
-              value={editProfile.position || ""}
-              className={styles.textField}
-              onChange={(e) => handleChange("position", e.target.value)}
-            />
-          </Box>
-        </Grid>
-      </Grid>
-      <Button onClick={handleSaveEdit}>저 장</Button>
-      <Button onClick={() => setEditModalOpen(false)}>취 소</Button>
-    </Container>
+            <label htmlFor="uploadInput" className={styles.InputLabel}>
+              {" "}
+              <UploadFileIcon name="upload" />
+              <input
+                className={styles.uploadInput}
+                id="uploadInput"
+                type="file"
+                accept="image/*"
+                onChange={handlePictureChange}
+              />
+            </label>
+          </div>
+          <div className={styles.editModalBodyInput}>
+            <div>
+              <Typography variant="h6">Name</Typography>
+              <TextField
+                type="text"
+                value={editProfile.name || ""}
+                onChange={(e) => handleChange("name", e.target.value)}
+              />
+            </div>
+            <div>
+              <Typography variant="h6">Phone</Typography>
+              <TextField
+                type="text"
+                value={editProfile.phoneNumber || ""}
+                onChange={(e) => handleChange("phoneNumber", e.target.value)}
+              />
+            </div>
+            <div>
+              <Typography variant="h6">Email</Typography>
+              <TextField
+                type="text"
+                value={editProfile.email || ""}
+                onChange={(e) => handleChange("email", e.target.value)}
+              />
+            </div>
+            <div>
+              <Typography variant="h6">Position</Typography>
+              <TextField
+                type="text"
+                value={editProfile.position || ""}
+                onChange={(e) => handleChange("position", e.target.value)}
+              />
+            </div>
+          </div>
+        </div>
+        <Box className={styles.modalBot}>
+          <Button onClick={handleSaveEdit}>저 장</Button>
+          <Button onClick={() => setEditModalOpen(false)}>취 소</Button>
+        </Box>
+      </div>
+    </div>
   );
 };
 

@@ -1,8 +1,9 @@
 import React, { useState, useRef } from "react";
 import ProfileInfo from "components/ProfileInfo";
-import { Button, Container } from "@mui/material";
 import { ProfileData } from "components/TypeDef";
 import EditModal from "components/EditModal";
+import ProfileHeader from "components/ProfileHeader";
+import ProfileWorkTime from "components/ProfileWorkTime";
 import useOnClickOutside from "../../hooks/useOnClickOutside";
 import styles from "./profilePage.module.css";
 
@@ -13,8 +14,8 @@ const ProfilePage: React.FC = () => {
     phoneNumber: "010-1234-5678",
     email: "ssudng2716@gmail.com",
     position: "FE",
-    startTime: null,
-    endTime: null,
+    startTime: "",
+    endTime: "",
     photoURL: "",
     working: false,
   });
@@ -26,16 +27,6 @@ const ProfilePage: React.FC = () => {
     photoURL: "",
   });
 
-  const handleEditProfile = () => {
-    setEditProfile({
-      name: profileData.name,
-      phoneNumber: profileData.phoneNumber,
-      email: profileData.email,
-      position: profileData.position,
-      photoURL: profileData.photoURL,
-    });
-    setEditModalOpen(true);
-  };
   const ref = useRef<HTMLDivElement>(null);
 
   useOnClickOutside(ref, () => {
@@ -43,10 +34,17 @@ const ProfilePage: React.FC = () => {
   });
 
   return (
-    <Container className={styles.pageContainer}>
-      <h1>Profile</h1>
-      <ProfileInfo profileData={profileData} setProfileData={setProfileData} />
-      <Button onClick={handleEditProfile}>편집</Button>
+    <div className={styles.pageContainer}>
+      <ProfileHeader
+        profileData={profileData}
+        setEditProfile={setEditProfile}
+        setEditModalOpen={setEditModalOpen}
+      />
+      <ProfileInfo profileData={profileData} />
+      <ProfileWorkTime
+        profileData={profileData}
+        setProfileData={setProfileData}
+      />
       {editModalOpen && (
         <EditModal
           editProfile={editProfile}
@@ -56,7 +54,7 @@ const ProfilePage: React.FC = () => {
           setEditModalOpen={setEditModalOpen}
         />
       )}
-    </Container>
+    </div>
   );
 };
 
