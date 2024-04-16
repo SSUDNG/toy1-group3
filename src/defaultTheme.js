@@ -9,6 +9,14 @@ const theme = createTheme({
       fontWeight: 500,
       marginBottom: 20,
     },
+    body1: {
+      fontSize: 16,
+      color: "#212121",
+    },
+    body2: {
+      fontSize: 16,
+      color: "#616161",
+    },
   },
   palette: {
     background: {
