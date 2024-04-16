@@ -5,6 +5,7 @@ import {
   MenuItem,
   SelectChangeEvent,
 } from "@mui/material";
+import Typography from "@mui/material/Typography";
 import React from "react";
 import styles from "../pages/TAAListPage/TAA.module.css";
 
@@ -20,7 +21,7 @@ function TAAHeader({ current, onSelect }: TAAHeaderProps) {
 
   return (
     <Container className={styles.headerContainer}>
-      <h1>근태신청 목록</h1>
+      <Typography variant="h1">근태신청 목록</Typography>
 
       <Select value={current} onChange={selectType}>
         <MenuItem value="전체">전체</MenuItem>
@@ -31,9 +32,7 @@ function TAAHeader({ current, onSelect }: TAAHeaderProps) {
         <MenuItem value="기타">기타</MenuItem>
       </Select>
 
-      <Button variant="contained" size="large" className={styles.btn}>
-        근태신청하기
-      </Button>
+      <Button>근태신청하기</Button>
     </Container>
   );
 }
