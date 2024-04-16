@@ -1,4 +1,5 @@
-.TAAcontainer{
+.form{
+  margin-left: 40px;
   margin: 40px;
   padding: 40px;
   width: 100%;
@@ -8,16 +9,16 @@
 }
 
 .headerContainer{
-  margin-left: 0;
-  padding:0;
   display: flex;
+  margin: 0;
+  padding:0 0 0 0;
 }
 
 .headerContainer .title{
   padding: 0;
-  margin-left: 0;
   margin: 0;
   width:50%;
+  box-sizing:border-box;
 }
 
 .headerContainer .right{
@@ -27,4 +28,9 @@
   padding: 0;
   margin: 0;
   width:50%;
+  box-sizing:border-box;
+}
+
+.headerContainer .right .btn{
+  margin : 0;
 }

@@ -1,5 +1,4 @@
 import {
-  Container,
   Button,
   Select,
   MenuItem,
@@ -20,11 +19,11 @@ function TAAHeader({ current, onSelect }: TAAHeaderProps) {
   };
 
   return (
-    <Container className={styles.headerContainer}>
-      <Container className={styles.title}>
+    <div className={styles.headerContainer}>
+      <div className={styles.title}>
         <h1>근태신청 목록</h1>
-      </Container>
-      <Container className={styles.right}>
+      </div>
+      <div className={styles.right}>
         <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
           <Select value={current} onChange={selectType}>
             <MenuItem value="전체">전체</MenuItem>
@@ -36,11 +35,11 @@ function TAAHeader({ current, onSelect }: TAAHeaderProps) {
           </Select>
         </FormControl>
 
-        <Button variant="contained" size="small">
+        <Button variant="contained" size="medium" className={styles.btn}>
           근태신청하기
         </Button>
-      </Container>
-    </Container>
+      </div>
+    </div>
   );
 }
 

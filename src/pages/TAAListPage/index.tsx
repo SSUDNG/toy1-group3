@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Container } from "@mui/material";
 import { AttandanceInfo } from "components/TypeDef";
 import TAAHeader from "../../components/TAAHeader";
 import TAAList from "../../components/TAAList";
@@ -159,10 +158,10 @@ function TAAListPage() {
       : attendanceData;
 
   return (
-    <Container className={styles.TAAcontainer}>
+    <form className={styles.form}>
       <TAAHeader current={selectedVacation} onSelect={setSelectedVacation} />
       <TAAList TAAdata={selectedData} />
-    </Container>
+    </form>
   );
 }
 
