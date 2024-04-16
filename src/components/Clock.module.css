@@ -1,0 +1,8 @@
+.clock {
+  width: 500px;
+  padding: 40px;
+  border: 1px solid #EEEEEE;
+  border-radius: 20px;
+  background-color: #fff;
+  text-align: center;
+}
