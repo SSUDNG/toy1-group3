@@ -4,6 +4,11 @@ import "pretendard/dist/web/static/pretendard.css";
 const theme = createTheme({
   typography: {
     fontFamily: ["Pretendard"].join(","),
+    h1: {
+      fontSize: 30,
+      fontWeight: 500,
+      marginBottom: 20,
+    },
   },
   palette: {
     background: {

@@ -33,7 +33,8 @@ ul {
 
 .sideBar ul .on {
   background: #fafafa;
-  color: #000;
+  color: #212121;
+  font-weight: 500;
 }
 
 .sideBar ul li > * {
@@ -53,12 +54,15 @@ a {
   text-decoration: none;
   outline: none;
 }
-a:hover,
 a:active,
 a:visited {
   text-decoration: none;
   color: inherit;
 }
+a:hover {
+  color: #212121;
+}
+
 button {
   padding: 0;
 }
