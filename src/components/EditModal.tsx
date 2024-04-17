@@ -71,7 +71,7 @@ const EditModal: React.FC<EditModalProps> = ({
   return (
     <div className={styles.modalBg}>
       <div className={styles.editModal} ref={ref}>
-        <h1>프로필 편집</h1>
+        <Typography variant="h1">프로필 편집</Typography>
         <div className={styles.editModalBody}>
           <div className={styles.photoBox}>
             <img
@@ -96,7 +96,7 @@ const EditModal: React.FC<EditModalProps> = ({
           </div>
           <div className={styles.editModalBodyInput}>
             <div>
-              <Typography variant="h6">Name</Typography>
+              <Typography variant="h4">Name</Typography>
               <TextField
                 type="text"
                 value={editProfile.name || ""}
@@ -104,7 +104,7 @@ const EditModal: React.FC<EditModalProps> = ({
               />
             </div>
             <div>
-              <Typography variant="h6">Phone</Typography>
+              <Typography variant="h4">Phone</Typography>
               <TextField
                 type="text"
                 value={editProfile.phoneNumber || ""}
@@ -112,7 +112,7 @@ const EditModal: React.FC<EditModalProps> = ({
               />
             </div>
             <div>
-              <Typography variant="h6">Email</Typography>
+              <Typography variant="h4">Email</Typography>
               <TextField
                 type="text"
                 value={editProfile.email || ""}
@@ -120,7 +120,7 @@ const EditModal: React.FC<EditModalProps> = ({
               />
             </div>
             <div>
-              <Typography variant="h6">Position</Typography>
+              <Typography variant="h4">Position</Typography>
               <TextField
                 type="text"
                 value={editProfile.position || ""}
@@ -130,8 +130,14 @@ const EditModal: React.FC<EditModalProps> = ({
           </div>
         </div>
         <Box className={styles.modalBot}>
-          <Button onClick={handleSaveEdit}>저 장</Button>
-          <Button onClick={() => setEditModalOpen(false)}>취 소</Button>
+          <Button onClick={handleSaveEdit}>저장</Button>
+          <Button
+            variant="outlined"
+            color="secondary"
+            onClick={() => setEditModalOpen(false)}
+          >
+            취소
+          </Button>
         </Box>
       </div>
     </div>
