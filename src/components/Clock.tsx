@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Typography from "@mui/material/Typography";
+import styles from "components/Clock.module.css";
 
 const Clock: React.FunctionComponent = () => {
   const [time, setTime] = useState(new Date());
@@ -25,7 +26,7 @@ const Clock: React.FunctionComponent = () => {
   const timeString = time.toLocaleTimeString("ko-KR");
 
   return (
-    <div>
+    <div className={styles.clock}>
       <Typography variant="h1">{timeString}</Typography>
       <Typography variant="body2">{dateString}</Typography>
     </div>

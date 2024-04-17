@@ -1,27 +1,18 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
-import Button from "@mui/material/Button";
 import Clock from "components/Clock";
-import styles from "components/Clock.module.css";
+import TAAList from "components/TAAList";
+import styles from "./Main.module.css";
 
 function MainPage() {
-  const navigate = useNavigate();
-  const goToTAAList = () => {
-    navigate("/TAA");
-  };
-
   return (
-    <div>
-      <Button
-        onClick={() => {
-          goToTAAList();
-        }}
-      >
-        근태신청목록
-      </Button>
-      <div className={styles.clock}>
+    <div className={styles.container}>
+      <section className={styles.top}>
+        <div className={styles.profileCard}>Profile</div>
         <Clock />
-      </div>
+      </section>
+      <section className={styles.middle}>
+        <TAAList TAAdata={[]} />
+      </section>
     </div>
   );
 }

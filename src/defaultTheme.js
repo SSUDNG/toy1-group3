@@ -44,8 +44,17 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           fontSize: "1rem",
-          marginTop: "20px",
           borderRadius: 8,
+          width: "100%",
+          maxWidth: 150,
+        },
+      },
+    },
+    MuiPaper: {
+      styleOverrides: {
+        root: {
+          boxShadow: "none",
+          border: "1px solid #F5F5F5",
         },
       },
     },

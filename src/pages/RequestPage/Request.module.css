@@ -11,3 +11,8 @@
   width: 100%;
   margin-bottom: 20px;
 }
+
+.form .MuiButtonBase-root,
+.form .MuiButton-root {
+  width: 100%;
+}
