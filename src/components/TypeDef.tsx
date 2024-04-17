@@ -1,10 +1,10 @@
-export type Date = {
+export interface Date {
   year: number;
   month: number;
   day: number;
-};
+}
 
-export type AttandanceInfo = {
+export interface AttandanceInfo {
   name: string;
   key: number;
   category: string;
