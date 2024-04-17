@@ -3,7 +3,6 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
-  margin: 40px;
 }
 
 .top {
@@ -24,8 +23,5 @@
 
 .middle {
   width: 100%;
-  background-color: #fff;
-  border: 1px solid #EEEEEE;
-  border-radius: 20px;
   overflow: hidden;
 }
