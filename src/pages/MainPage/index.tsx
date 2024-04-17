@@ -1,6 +1,6 @@
 import React from "react";
 import Clock from "components/Clock";
-import TAAList from "components/TAAList";
+import TAAListPage from "pages/TAAListPage";
 import styles from "./Main.module.css";
 
 function MainPage() {
@@ -11,7 +11,7 @@ function MainPage() {
         <Clock />
       </section>
       <section className={styles.middle}>
-        <TAAList TAAdata={[]} />
+        <TAAListPage />
       </section>
     </div>
   );

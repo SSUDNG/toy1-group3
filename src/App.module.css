@@ -3,5 +3,6 @@
 }
 .content {
   height: 100vh;
+  margin: 40px;
   background-color: #fafafa;
 }

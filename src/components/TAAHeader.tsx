@@ -27,7 +27,7 @@ function TAAHeader({ current, onSelect }: TAAHeaderProps) {
   return (
     <div className={styles.headerContainer}>
       <div className={styles.title}>
-        <Typography variant="h1">근태신청 목록</Typography>
+        <Typography variant="h1">휴가 신청 목록</Typography>
       </div>
       <div className={styles.right}>
         <FormControl sx={{ m: 0, minWidth: 120 }} size="small">
@@ -53,7 +53,7 @@ function TAAHeader({ current, onSelect }: TAAHeaderProps) {
             goToResist();
           }}
         >
-          근태신청하기
+          휴가 신청하기
         </Button>
       </div>
     </div>
