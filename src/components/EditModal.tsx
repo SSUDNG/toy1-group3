@@ -96,7 +96,7 @@ const EditModal: React.FC<EditModalProps> = ({
           </div>
           <div className={styles.editModalBodyInput}>
             <div>
-              <Typography variant="h4">Name</Typography>
+              <Typography variant="body2">Name</Typography>
               <TextField
                 type="text"
                 value={editProfile.name || ""}
@@ -104,7 +104,7 @@ const EditModal: React.FC<EditModalProps> = ({
               />
             </div>
             <div>
-              <Typography variant="h4">Phone</Typography>
+              <Typography variant="body2">Phone</Typography>
               <TextField
                 type="text"
                 value={editProfile.phoneNumber || ""}
@@ -112,7 +112,7 @@ const EditModal: React.FC<EditModalProps> = ({
               />
             </div>
             <div>
-              <Typography variant="h4">Email</Typography>
+              <Typography variant="body2">Email</Typography>
               <TextField
                 type="text"
                 value={editProfile.email || ""}
@@ -120,7 +120,7 @@ const EditModal: React.FC<EditModalProps> = ({
               />
             </div>
             <div>
-              <Typography variant="h4">Position</Typography>
+              <Typography variant="body2">Position</Typography>
               <TextField
                 type="text"
                 value={editProfile.position || ""}
