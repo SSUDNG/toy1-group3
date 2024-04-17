@@ -8,9 +8,9 @@ import {
   signOut,
   User,
 } from "firebase/auth";
-
 import SideBar from "components/SideBar";
 import TAAListPage from "pages/TAAListPage";
+import FireTest from "pages/FIreCloudTestPage/FireTestPage";
 import ProfilePage from "./pages/ProfilePage";
 import LoginPage from "./pages/LoginPage/Login";
 import MainPage from "./pages/MainPage";
@@ -47,6 +47,15 @@ function App() {
         const newData = data.user;
         setUserData(newData);
         localStorage.setItem("userData", JSON.stringify(data.user));
+        console.log(data.user);
+
+        // const profileData: DefaultProfile = {
+        //   name: data.user.displayName,
+        //   email: data.user.email,
+        //   photoURL: data.user.photoURL,
+        // };
+        // FireCreate(profileData);
+        // console.log(profileData);
       })
       .catch((error) => {
         console.log(error);
@@ -70,7 +79,7 @@ function App() {
         </nav>
       )}
 
-      <div className={styles.mainContent}>
+      <div className={styles.content}>
         <Routes>
           <Route
             path="/login"
@@ -80,6 +89,7 @@ function App() {
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/TAA" element={<TAAListPage />} />
           <Route path="/request" element={<Request />} />
+          <Route path="/fire" element={<FireTest />} />
         </Routes>
       </div>
     </div>

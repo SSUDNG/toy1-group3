@@ -1,4 +1,4 @@
-import { Container, IconButton } from "@mui/material";
+import { Container, IconButton, Typography } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import React from "react";
 import { ProfileData } from "components/TypeDef";
@@ -25,12 +25,12 @@ const ProfileHeader: React.FC<HeaderProps> = ({
   };
   return (
     <Container>
-      <h1>
+      <Typography variant="h1">
         프로필{" "}
         <IconButton>
           <EditIcon onClick={handleEditProfile} />
         </IconButton>
-      </h1>
+      </Typography>
     </Container>
   );
 };

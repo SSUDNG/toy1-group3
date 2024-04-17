@@ -20,7 +20,7 @@ const ProfileInfo: React.FC<InfoProps> = ({ profileData }) => {
           }
           alt={profileData.name}
         />
-        <Typography variant="h3">{profileData.name}</Typography>
+        <Typography variant="h2">{profileData.name}</Typography>
         <Box display="flex" alignItems="center">
           <Box
             width={15}
@@ -38,15 +38,15 @@ const ProfileInfo: React.FC<InfoProps> = ({ profileData }) => {
         <Box className={styles.infoBox}>
           <Box className={styles.infoItem}>
             <span>Position</span>
-            <span>{profileData.position}</span>
+            <Typography variant="body1">{profileData.position}</Typography>
           </Box>
           <Box className={styles.infoItem}>
             <span>Email</span>
-            <span>{profileData.email}</span>
+            <Typography variant="body1">{profileData.email}</Typography>
           </Box>
           <Box className={styles.infoItem}>
             <span>Phone</span>
-            <span>{profileData.phoneNumber}</span>
+            <Typography variant="body1">{profileData.phoneNumber}</Typography>
           </Box>
         </Box>
       </Grid>

@@ -13,8 +13,8 @@
   flex-direction: column;
 }
 .photoBox img{
-  width: 280px;
-  height: 280px;
+  width: 150px;
+  height: 150px;
   border-radius: 20px;
   margin-bottom: 20px;
   overflow: hidden;
@@ -24,9 +24,9 @@
 }
 .infoItem {
   min-width: 300px;
-  height: 80px;
+  height: 60px;
   background-color: #FAFAFA;
-  border-radius: 20px;
+  border-radius: 8px;
   position: relative;
   display: flex;
   align-items: center;
@@ -37,11 +37,9 @@
 position: absolute;
 top: 8px;
 left: 8px;
-color: #BDBDBD;
+color: #9E9E9E;
 }
-.infoItem span:nth-child(2) {
-  font-size: 20px;
-}
+
 .workBtn {
   display: flex;
   align-items: center;

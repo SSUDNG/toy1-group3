@@ -20,6 +20,15 @@ const Request: React.FunctionComponent = () => {
     notes: "",
   });
 
+  const isFormValid = () => {
+    return (
+      requestData.vacationType !== "" &&
+      requestData.startDate !== null &&
+      requestData.endDate !== null &&
+      requestData.reason !== ""
+    );
+  };
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
   };
@@ -36,12 +45,14 @@ const Request: React.FunctionComponent = () => {
 
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
-      <Typography variant="h1">부재 신청</Typography>
+      <Typography variant="h1">휴가 신청</Typography>
       <Grid className={styles.grid} container spacing={2}>
         <Grid item xs={12}>
           <FormControl fullWidth>
             <TextField
               select
+              required
+              color="secondary"
               label="휴가 종류"
               value={requestData.vacationType}
               onChange={(e) =>
@@ -63,7 +74,9 @@ const Request: React.FunctionComponent = () => {
           <TextField
             label="시작일"
             type="date"
+            color="secondary"
             fullWidth
+            required
             value={requestData.startDate || ""}
             onChange={(e) =>
               setRequestData({
@@ -80,7 +93,9 @@ const Request: React.FunctionComponent = () => {
           <TextField
             label="종료일"
             type="date"
+            color="secondary"
             fullWidth
+            required
             value={requestData.endDate || ""}
             onChange={(e) =>
               setRequestData({
@@ -97,6 +112,8 @@ const Request: React.FunctionComponent = () => {
           <FormControl fullWidth>
             <TextField
               select
+              required
+              color="secondary"
               label="사유"
               value={requestData.reason}
               onChange={(e) =>
@@ -117,6 +134,7 @@ const Request: React.FunctionComponent = () => {
         <Grid item xs={12}>
           <TextField
             label="추가 정보"
+            color="secondary"
             fullWidth
             multiline
             rows={4}
@@ -130,11 +148,13 @@ const Request: React.FunctionComponent = () => {
           />
         </Grid>
         <Grid item xs={6}>
-          <Button type="submit">신청하기</Button>
+          <Button type="submit" disabled={!isFormValid()}>
+            휴가 신청
+          </Button>
         </Grid>
         <Grid item xs={6}>
           <Button variant="outlined" color="secondary" onClick={handleReset}>
-            취소하기
+            취소
           </Button>
         </Grid>
       </Grid>
