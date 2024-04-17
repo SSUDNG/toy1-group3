@@ -11,7 +11,7 @@ export interface AttandanceInfo {
   begin: Date;
   end: Date;
   comment: string;
-};
+}
 
 export type ProfileData = {
   name: string;

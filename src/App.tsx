@@ -70,7 +70,7 @@ function App() {
         </nav>
       )}
 
-      <div className={styles.mainContent}>
+      <div className={styles.content}>
         <Routes>
           <Route
             path="/login"
