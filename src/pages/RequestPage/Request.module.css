@@ -1,6 +1,5 @@
 .form {
   padding: 40px;
-  margin: 40px;
   background-color: #fff;
   border-radius: 20px;
   border: 1px solid #EEEEEE;
@@ -10,4 +9,9 @@
 .form .MuiTextField-root {
   width: 100%;
   margin-bottom: 20px;
+}
+
+.form .MuiButtonBase-root,
+.form .MuiButton-root {
+  width: 100%;
 }

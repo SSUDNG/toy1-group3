@@ -7,7 +7,25 @@ const theme = createTheme({
     h1: {
       fontSize: 30,
       fontWeight: 500,
+      marginBottom: 30,
+    },
+    h2: {
+      fontSize: 26,
+      fontWeight: 500,
       marginBottom: 20,
+    },
+    h4: {
+      fontSize: 18,
+      fontWeight: 500,
+      marginBottom: 5,
+    },
+    body1: {
+      fontSize: 16,
+      color: "#212121",
+    },
+    body2: {
+      fontSize: 16,
+      color: "#616161",
     },
   },
   palette: {
@@ -36,8 +54,18 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           fontSize: "1rem",
-          marginTop: "20px",
           borderRadius: 8,
+          width: "100%",
+          maxWidth: 150,
+          marginTop: 10,
+        },
+      },
+    },
+    MuiPaper: {
+      styleOverrides: {
+        root: {
+          boxShadow: "none",
+          border: "1px solid #F5F5F5",
         },
       },
     },

@@ -3,36 +3,64 @@ import { Button, TextField, MenuItem, FormControl, Grid } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import styles from "./Request.module.css";
 
+interface RequestData {
+  vacationType: string;
+  startDate: string | null;
+  endDate: string | null;
+  reason: string;
+  notes: string;
+}
+
 const Request: React.FunctionComponent = () => {
-  const [vacationType, setVacationType] = useState("");
-  const [startDate, setStartDate] = useState<Date | null>(null);
-  const [endDate, setEndDate] = useState<Date | null>(null);
-  const [reason, setReason] = useState("");
-  const [notes, setNotes] = useState("");
+  const [requestData, setRequestData] = useState<RequestData>({
+    vacationType: "",
+    startDate: null,
+    endDate: null,
+    reason: "",
+    notes: "",
+  });
+
+  const isFormValid = () => {
+    return (
+      requestData.vacationType !== "" &&
+      requestData.startDate !== null &&
+      requestData.endDate !== null &&
+      requestData.reason !== ""
+    );
+  };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
   };
 
   const handleReset = () => {
-    setVacationType("");
-    setStartDate(null);
-    setEndDate(null);
-    setReason("");
-    setNotes("");
+    setRequestData({
+      vacationType: "",
+      startDate: null,
+      endDate: null,
+      reason: "",
+      notes: "",
+    });
   };
 
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
-      <Typography variant="h1">부재 신청</Typography>
+      <Typography variant="h1">휴가 신청</Typography>
       <Grid className={styles.grid} container spacing={2}>
         <Grid item xs={12}>
           <FormControl fullWidth>
             <TextField
               select
+              required
+              color="secondary"
               label="휴가 종류"
-              value={vacationType}
-              onChange={(e) => setVacationType(e.target.value as string)}
+              value={requestData.vacationType}
+              onChange={(e) =>
+                setRequestData({
+                  ...requestData,
+                  vacationType: e.target.value as string,
+                })
+              }
             >
               <MenuItem value="연차">연차</MenuItem>
               <MenuItem value="반차">반차</MenuItem>
@@ -46,10 +74,15 @@ const Request: React.FunctionComponent = () => {
           <TextField
             label="시작일"
             type="date"
+            color="secondary"
             fullWidth
-            value={startDate ? startDate.toISOString().split("T")[0] : ""}
+            required
+            value={requestData.startDate || ""}
             onChange={(e) =>
-              setStartDate(e.target.value ? new Date(e.target.value) : null)
+              setRequestData({
+                ...requestData,
+                startDate: e.target.value || null,
+              })
             }
             InputLabelProps={{
               shrink: true,
@@ -60,10 +93,15 @@ const Request: React.FunctionComponent = () => {
           <TextField
             label="종료일"
             type="date"
+            color="secondary"
             fullWidth
-            value={endDate ? endDate.toISOString().split("T")[0] : ""}
+            required
+            value={requestData.endDate || ""}
             onChange={(e) =>
-              setEndDate(e.target.value ? new Date(e.target.value) : null)
+              setRequestData({
+                ...requestData,
+                endDate: e.target.value || null,
+              })
             }
             InputLabelProps={{
               shrink: true,
@@ -74,9 +112,16 @@ const Request: React.FunctionComponent = () => {
           <FormControl fullWidth>
             <TextField
               select
+              required
+              color="secondary"
               label="사유"
-              value={reason}
-              onChange={(e) => setReason(e.target.value as string)}
+              value={requestData.reason}
+              onChange={(e) =>
+                setRequestData({
+                  ...requestData,
+                  reason: e.target.value as string,
+                })
+              }
             >
               <MenuItem value="휴가">휴가</MenuItem>
               <MenuItem value="병원방문">병원방문</MenuItem>
@@ -89,19 +134,27 @@ const Request: React.FunctionComponent = () => {
         <Grid item xs={12}>
           <TextField
             label="추가 정보"
+            color="secondary"
             fullWidth
             multiline
             rows={4}
-            value={notes}
-            onChange={(e) => setNotes(e.target.value)}
+            value={requestData.notes}
+            onChange={(e) =>
+              setRequestData({
+                ...requestData,
+                notes: e.target.value,
+              })
+            }
           />
         </Grid>
         <Grid item xs={6}>
-          <Button type="submit">신청하기</Button>
+          <Button type="submit" disabled={!isFormValid()}>
+            휴가 신청
+          </Button>
         </Grid>
         <Grid item xs={6}>
           <Button variant="outlined" color="secondary" onClick={handleReset}>
-            취소하기
+            취소
           </Button>
         </Grid>
       </Grid>
