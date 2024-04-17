@@ -9,6 +9,14 @@ const theme = createTheme({
       fontWeight: 500,
       marginBottom: 20,
     },
+    body1: {
+      fontSize: 16,
+      color: "#212121",
+    },
+    body2: {
+      fontSize: 16,
+      color: "#616161",
+    },
   },
   palette: {
     background: {
@@ -36,8 +44,17 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           fontSize: "1rem",
-          marginTop: "20px",
           borderRadius: 8,
+          width: "100%",
+          maxWidth: 150,
+        },
+      },
+    },
+    MuiPaper: {
+      styleOverrides: {
+        root: {
+          boxShadow: "none",
+          border: "1px solid #F5F5F5",
         },
       },
     },
