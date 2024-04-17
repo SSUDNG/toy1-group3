@@ -20,6 +20,15 @@ const Request: React.FunctionComponent = () => {
     notes: "",
   });
 
+  const isFormValid = () => {
+    return (
+      requestData.vacationType !== "" &&
+      requestData.startDate !== null &&
+      requestData.endDate !== null &&
+      requestData.reason !== ""
+    );
+  };
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
   };
@@ -42,6 +51,7 @@ const Request: React.FunctionComponent = () => {
           <FormControl fullWidth>
             <TextField
               select
+              required
               label="휴가 종류"
               value={requestData.vacationType}
               onChange={(e) =>
@@ -64,6 +74,7 @@ const Request: React.FunctionComponent = () => {
             label="시작일"
             type="date"
             fullWidth
+            required
             value={requestData.startDate || ""}
             onChange={(e) =>
               setRequestData({
@@ -81,6 +92,7 @@ const Request: React.FunctionComponent = () => {
             label="종료일"
             type="date"
             fullWidth
+            required
             value={requestData.endDate || ""}
             onChange={(e) =>
               setRequestData({
@@ -97,6 +109,7 @@ const Request: React.FunctionComponent = () => {
           <FormControl fullWidth>
             <TextField
               select
+              required
               label="사유"
               value={requestData.reason}
               onChange={(e) =>
@@ -130,7 +143,9 @@ const Request: React.FunctionComponent = () => {
           />
         </Grid>
         <Grid item xs={6}>
-          <Button type="submit">신청하기</Button>
+          <Button type="submit" disabled={!isFormValid()}>
+            신청하기
+          </Button>
         </Grid>
         <Grid item xs={6}>
           <Button variant="outlined" color="secondary" onClick={handleReset}>
