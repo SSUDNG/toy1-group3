@@ -14,6 +14,7 @@ import TAAListPage from "pages/TAAListPage";
 import ProfilePage from "./pages/ProfilePage";
 import LoginPage from "./pages/LoginPage/Login";
 import MainPage from "./pages/MainPage";
+import NewsPage from "./pages/NewsPage/News";
 import Request from "./pages/RequestPage";
 import styles from "./App.module.css";
 import app from "./firebase";
@@ -78,6 +79,7 @@ function App() {
           />
           <Route path="/" element={<MainPage />} />
           <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/news" element={<NewsPage />} />
           <Route path="/TAA" element={<TAAListPage />} />
           <Route path="/request" element={<Request />} />
         </Routes>

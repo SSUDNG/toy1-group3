@@ -4,6 +4,7 @@ ul {
 }
 .sideBar {
   position: sticky;
+  top: 0;
   padding: 40px 24px;
   width: 260px;
   height: 100vh;
