@@ -1,6 +1,5 @@
 .pageContainer {
   padding: 40px;
-  margin: 40px;
   width: 100%;
   background-color: #fff;
   border-radius: 20px;
@@ -69,6 +68,7 @@ color: #9E9E9E;
   align-items: center;
 }
 .editModal {
+  width: 700px;
   padding: 40px;
   border-radius: 20px;
   background-color: #fff;
@@ -77,13 +77,16 @@ color: #9E9E9E;
 }
 .editModalBody {
   display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
 }
 .editModalBodyInput {
-  width: 300px;
+  width: 350px;
   margin: 20px
 }
 .editModalBodyInput div div {
   width: 100%;
+  margin-bottom: 10px;
 }
 .modalBot{
   width: 100%;

@@ -99,6 +99,7 @@ const EditModal: React.FC<EditModalProps> = ({
               <Typography variant="body2">Name</Typography>
               <TextField
                 type="text"
+                color="secondary"
                 value={editProfile.name || ""}
                 onChange={(e) => handleChange("name", e.target.value)}
               />
@@ -107,6 +108,7 @@ const EditModal: React.FC<EditModalProps> = ({
               <Typography variant="body2">Phone</Typography>
               <TextField
                 type="text"
+                color="secondary"
                 value={editProfile.phoneNumber || ""}
                 onChange={(e) => handleChange("phoneNumber", e.target.value)}
               />
@@ -115,6 +117,7 @@ const EditModal: React.FC<EditModalProps> = ({
               <Typography variant="body2">Email</Typography>
               <TextField
                 type="text"
+                color="secondary"
                 value={editProfile.email || ""}
                 onChange={(e) => handleChange("email", e.target.value)}
               />
@@ -123,6 +126,7 @@ const EditModal: React.FC<EditModalProps> = ({
               <Typography variant="body2">Position</Typography>
               <TextField
                 type="text"
+                color="secondary"
                 value={editProfile.position || ""}
                 onChange={(e) => handleChange("position", e.target.value)}
               />

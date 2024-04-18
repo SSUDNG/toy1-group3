@@ -11,6 +11,7 @@ import {
   TableRow,
   IconButton,
   Box,
+  Typography,
 } from "@mui/material";
 import { KeyboardArrowDown, KeyboardArrowUp } from "@mui/icons-material";
 import { AttendanceInfo } from "./TypeDef";
@@ -54,8 +55,8 @@ const Row: React.FC<RowProps> = ({ row }) => {
       <TableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
           <Collapse in={open} timeout="auto" unmountOnExit>
-            <Box sx={{ margin: 1 }}>
-              <h3>{row.comment}</h3>
+            <Box sx={{ margin: 2 }}>
+              <Typography variant="body1">{row.comment}</Typography>
             </Box>
           </Collapse>
         </TableCell>

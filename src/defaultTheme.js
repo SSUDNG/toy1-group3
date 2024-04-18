@@ -69,6 +69,13 @@ const theme = createTheme({
         },
       },
     },
+    MuiTableCell: {
+      styleOverrides: {
+        root: {
+          borderBottom: "1px solid #F5F5F5",
+        },
+      },
+    },
   },
 });
 
