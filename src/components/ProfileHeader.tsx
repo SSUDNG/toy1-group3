@@ -24,7 +24,7 @@ const ProfileHeader: React.FC<HeaderProps> = ({
     setEditModalOpen(true);
   };
   return (
-    <Container>
+    <Container style={{ padding: 0 }}>
       <Typography variant="h1">
         프로필{" "}
         <IconButton>
