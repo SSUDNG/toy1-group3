@@ -1,0 +1,51 @@
+h4, p {
+  margin: 0;
+}
+
+.newsWrap{
+  width: 1500px;
+  margin: 40px;
+  padding: 40px;
+  border-radius: 20px;
+  background: #fff;
+}
+
+.newsList {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); 
+  gap: 20px; 
+}
+
+.newsList li {
+  list-style: none; 
+  height: 380px;
+  border-radius: 10px;
+  border: 1px solid #d8d8d8;
+}
+
+.newsList li > img {
+  width: 100%;
+  height: 50%;
+}
+
+.newsList .info {
+  padding: 10px;
+}
+
+.newsList .info h4{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 400px;
+}
+
+.newsList .info .cont{
+  margin:10px 0;
+  height: 50px; 
+  overflow: hidden;
+}
+
+.newsList .info .right{
+  text-align: right;
+  color: #9a9a9a;
+}
