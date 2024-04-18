@@ -14,14 +14,14 @@ import {
   Typography,
 } from "@mui/material";
 import { KeyboardArrowDown, KeyboardArrowUp } from "@mui/icons-material";
-import { AttandanceInfo } from "./TypeDef";
+import { AttendanceInfo } from "./TypeDef";
 
 type TAAListProps = {
-  TAAdata: AttandanceInfo[];
+  TAAdata: AttendanceInfo[];
 };
 
 interface RowProps {
-  row: AttandanceInfo;
+  row: AttendanceInfo;
 }
 
 const Row: React.FC<RowProps> = ({ row }) => {
@@ -106,8 +106,8 @@ export default function TAAList({ TAAdata }: TAAListProps) {
             {TAAdata.slice(
               page * rowsPerPage,
               page * rowsPerPage + rowsPerPage,
-            ).map((row: AttandanceInfo) => (
-              <Row row={row} />
+            ).map((row: AttendanceInfo) => (
+              <Row row={row} key={row.key} />
             ))}
           </TableBody>
         </Table>
