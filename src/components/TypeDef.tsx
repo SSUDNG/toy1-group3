@@ -18,6 +18,7 @@ export interface DefaultProfile {
   email: string;
   photoURL: string;
   phoneNumber: string;
+  position: string;
 }
 
 // export interface ProfileData extends DefaultProfile {

@@ -12,6 +12,7 @@ export default function FireCreate(profileData: DefaultProfile): Promise<void> {
       email: profileData.email,
       photoURL: profileData.photoURL,
       phoneNumber: profileData.phoneNumber,
+      position: profileData.position,
     })
       .then(() => {
         console.log("written!");
