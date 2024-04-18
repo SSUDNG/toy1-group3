@@ -31,6 +31,20 @@ const Request: React.FunctionComponent = () => {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    const savedRequests = JSON.parse(
+      localStorage.getItem("vacationRequests") || "[]",
+    );
+    localStorage.setItem(
+      "vacationRequests",
+      JSON.stringify([...savedRequests, requestData]),
+    );
+    setRequestData({
+      vacationType: "",
+      startDate: null,
+      endDate: null,
+      reason: "",
+      notes: "",
+    });
   };
 
   const handleReset = () => {
@@ -147,16 +161,19 @@ const Request: React.FunctionComponent = () => {
             }
           />
         </Grid>
-        <Grid item xs={6}>
+        <div className={styles.btnContainer}>
           <Button type="submit" disabled={!isFormValid()}>
             휴가 신청
           </Button>
-        </Grid>
-        <Grid item xs={6}>
-          <Button variant="outlined" color="secondary" onClick={handleReset}>
+          <Button
+            variant="outlined"
+            color="secondary"
+            disabled={!isFormValid()}
+            onClick={handleReset}
+          >
             취소
           </Button>
-        </Grid>
+        </div>
       </Grid>
     </form>
   );
