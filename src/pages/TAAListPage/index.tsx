@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { AttandanceInfo } from "components/TypeDef";
+import { AttendanceInfo } from "components/TypeDef";
 import TAAHeader from "../../components/TAAHeader";
 import TAAList from "../../components/TAAList";
 import styles from "./TAA.module.css";
 
 function TAAListPage() {
   const [selectedVacation, setSelectedVacation] = useState<string>("전체");
-  const attendanceData: AttandanceInfo[] = [
+  const attendanceData: AttendanceInfo[] = [
     {
       name: "김상화",
       key: 1,
@@ -158,10 +158,10 @@ function TAAListPage() {
       : attendanceData;
 
   return (
-    <form className={styles.form}>
+    <div className={styles.form}>
       <TAAHeader current={selectedVacation} onSelect={setSelectedVacation} />
       <TAAList TAAdata={selectedData} />
-    </form>
+    </div>
   );
 }
 
