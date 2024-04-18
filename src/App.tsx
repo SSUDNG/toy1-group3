@@ -79,7 +79,7 @@ function App() {
                 position: "포지션을 입력해주세요",
               };
               console.log(profileData);
-              FireCreate(profileData);
+              FireCreate("users", profileData);
               localStorage.setItem("userData", JSON.stringify(profileData));
             }
           })
