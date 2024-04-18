@@ -1,6 +1,7 @@
 import React from "react";
 import Clock from "components/Clock";
 import TAAListPage from "pages/TAAListPage";
+import News from "pages/NewsPage/News";
 import styles from "./Main.module.css";
 
 function MainPage() {
@@ -12,6 +13,9 @@ function MainPage() {
       </section>
       <section className={styles.middle}>
         <TAAListPage />
+      </section>
+      <section className={styles.bottom}>
+        <News />
       </section>
     </div>
   );
