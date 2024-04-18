@@ -27,8 +27,8 @@ const ProfileHeader: React.FC<HeaderProps> = ({
     <Container>
       <Typography variant="h1">
         프로필{" "}
-        <IconButton>
-          <EditIcon onClick={handleEditProfile} />
+        <IconButton onClick={handleEditProfile}>
+          <EditIcon />
         </IconButton>
       </Typography>
     </Container>

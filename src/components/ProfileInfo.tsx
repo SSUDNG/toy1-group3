@@ -11,7 +11,7 @@ interface InfoProps {
 const ProfileInfo: React.FC<InfoProps> = ({ profileData }) => {
   return (
     <Grid container spacing={2} className={styles.infoContainer}>
-      <Grid direction="column" className={styles.photoBox} item xs={6}>
+      <Grid item xs={6} className={styles.photoBox}>
         <img
           src={
             profileData.photoURL
