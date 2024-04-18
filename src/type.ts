@@ -21,3 +21,11 @@ export type FireUser = {
   photoURL: string;
   uid: string;
 };
+
+export type NewsItem = {
+  tit: string;
+  cont: string;
+  Author: string;
+  uploadTime: string;
+  imgPath: string;
+};
