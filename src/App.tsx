@@ -11,6 +11,8 @@ import {
 import SideBar from "components/SideBar";
 import TAAListPage from "pages/TAAListPage";
 import FireTest from "pages/FIreCloudTestPage/FireTestPage";
+import { DefaultProfile } from "components/TypeDef";
+import FireCreate from "components/FireCreate";
 import ProfilePage from "./pages/ProfilePage";
 import LoginPage from "./pages/LoginPage/Login";
 import MainPage from "./pages/MainPage";
@@ -47,15 +49,20 @@ function App() {
         const newData = data.user;
         setUserData(newData);
         localStorage.setItem("userData", JSON.stringify(data.user));
-        console.log(data.user);
 
-        // const profileData: DefaultProfile = {
-        //   name: data.user.displayName,
-        //   email: data.user.email,
-        //   photoURL: data.user.photoURL,
-        // };
-        // FireCreate(profileData);
-        // console.log(profileData);
+        const profileData: DefaultProfile = {
+          name: data.user.displayName
+            ? data.user.displayName
+            : "성함을 입력해주세요",
+          email: data.user.email as string,
+          photoURL: data.user.photoURL
+            ? data.user.photoURL
+            : "https://i.stack.imgur.com/l60Hf.png",
+          phoneNumber: data.user.phoneNumber
+            ? data.user.phoneNumber
+            : "휴대폰 번호를 입력해주세요",
+        };
+        FireCreate(profileData);
       })
       .catch((error) => {
         console.log(error);

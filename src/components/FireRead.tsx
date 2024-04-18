@@ -13,6 +13,7 @@ interface DOC {
   last: string;
   born: number;
 }
+
 export default function FireRead(): Promise<void> {
   const fetchData = async () => {
     const q = query(collection(db, "users"), where("name", "==", "ex_user"));

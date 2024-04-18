@@ -1,9 +1,9 @@
 import React from "react";
 import { Button } from "@mui/material";
 // import FireCreate from "components/FireCreate";
-import FireRead from "components/FireRead";
 import FireUpdate from "components/FireUpdate";
 import FireDelete from "components/FireDelete";
+// import FireRead from "components/FireRead";
 
 export default function FireTest() {
   // useEffect(() => {
@@ -25,7 +25,7 @@ export default function FireTest() {
   return (
     <>
       {/* <Button onClick={() => FireCreate()}>Create Data</Button> */}
-      <Button onClick={() => FireRead()}>Read Data</Button>
+      {/* <Button onClick={() => FireRead()}>Read Data</Button> */}
       <Button onClick={() => FireUpdate()}>Update Data</Button>
       <Button onClick={() => FireDelete()}>Delete Data</Button>
     </>

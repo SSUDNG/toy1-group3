@@ -15,8 +15,9 @@ export interface AttendanceInfo {
 
 export interface DefaultProfile {
   name: string;
-  email: string | null;
-  photoURL: string | null;
+  email: string;
+  photoURL: string;
+  phoneNumber: string;
 }
 
 // export interface ProfileData extends DefaultProfile {
