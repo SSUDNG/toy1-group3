@@ -77,11 +77,15 @@ color: #9E9E9E;
 }
 .editModalBody {
   display: flex;
-  justify-content: space-around;
-  margin-bottom: 20px;
+  gap: 20px;
+}
+@media screen and (max-width: 600px) {
+  .editModalBody {
+    flex-direction: column;
+  }
 }
 .editModalBodyInput {
-  width: 350px;
+  flex-grow: 1;
   margin: 20px
 }
 .editModalBodyInput div div {
@@ -91,20 +95,17 @@ color: #9E9E9E;
 .modalBot{
   width: 100%;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
+  gap: 20px;
 }
-/* .editModal input {
-  width: 100%
-} */
 .uploadInput {
   display: none;
 }
 .InputLabel {
-  width: 60px;
-  height: 60px;
-  height: 60px;
-  background: #90a4ae;
-  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  background: #ECEFF1;
+  border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
