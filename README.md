@@ -25,33 +25,34 @@ React, TypeScript, Firebase, ESLint, Figma 등을 사용했습니다.
 
 #### 0. Login
 
-![Header](/client/public/images/readme/header.png)
+![Login](./public/images/readme/Login.png)
 
 #### 1. Dashboard
 
-![Header](/client/public/images/readme/header.png)
+![DashBoard](./public/images/readme/header.png)
 
 #### 2. Vacation
 
-![Category](/client/public/images/readme/category.png)
+![VacationList](./public/images/readme/VacationList.png)
 
 #### 3. Request
 
-![Category](/client/public/images/readme/add.png)
+![Request](./public/images/readme/Request.png)
+![RequestButton](./public/images/readme/RequestButtonOn.png)
 
 #### 4. News
 
-![Category](/client/public/images/readme/items.png)
+![News](./public/images/readme/News.png)
 
 #### 5. Profile
 
-![Category](/client/public/images/readme/footer.png)
+![Category](./public/images/readme/footer.png)
 
 ---
 
 #### UserFlow
 
-![Category](/client/public/images/readme/userflow.png)
+![UserFlow](./public/images/readme/userFlow.png)
 
 ---
 
