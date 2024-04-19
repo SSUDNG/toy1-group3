@@ -85,7 +85,13 @@ const ProfileWorkTime: React.FC<WorkTimeProps> = ({
               >
                 확인
               </Button>
-              <Button onClick={() => setConfirmModalOpen(false)}>취소</Button>
+              <Button
+                onClick={() => setConfirmModalOpen(false)}
+                variant="outlined"
+                color="secondary"
+              >
+                취소
+              </Button>
             </div>
           </div>
         </div>
