@@ -3,19 +3,13 @@ import {
   getDoc,
   QueryDocumentSnapshot,
   query,
-  where,
   collection,
   getDocs,
 } from "firebase/firestore";
 import { db } from "../firebase";
-import { DefaultProfile } from "./TypeDef";
+import { RequestData, DefaultProfile } from "./TypeDef";
 
-interface DOC {
-  first: string;
-  last: string;
-  born: number;
-}
-
+// 하나의 문서만 읽을 때!
 export function ReadDoc(
   col: string,
   target: string,
@@ -26,7 +20,6 @@ export function ReadDoc(
     const data = docSnapshot.data() as DefaultProfile;
     return data;
   };
-
   return fetchData()
     .then((data) => {
       return data;
@@ -36,23 +29,24 @@ export function ReadDoc(
     });
 }
 
-export default function FireRead(): Promise<void> {
+// 여러 문서를 긁어올 때!
+export function ReadSelection(col: string): Promise<RequestData[] | null> {
   const fetchData = async () => {
-    const q = query(collection(db, "users"), where("name", "==", "ex_user"));
+    const q = query(collection(db, col));
     const querySnapshot = await getDocs(q);
-    querySnapshot.forEach((docm: QueryDocumentSnapshot) => {
-      const data = docm.data() as DOC;
-      console.log(data);
-    });
+    const vacationsData = querySnapshot.docs.map(
+      (document: QueryDocumentSnapshot) => document.data() as RequestData,
+    );
+    return vacationsData;
   };
 
   return fetchData()
-    .then(() => {
-      console.log("Data fetching completed.");
+    .then((data) => {
+      return data;
     })
     .catch((error) => {
       console.error("Error fetching documents: ", error);
-      return Promise.reject(error);
+      return null;
     });
 }
 
