@@ -43,17 +43,15 @@ export const AttendanceProvider: React.FC<{ children: ReactNode }> = ({
   const [attendanceData, setAttendanceData] = useState<AttendanceData>(
     initialAttendanceContext.attendanceData,
   );
-
+  const [currentDate, setCurrentDate] = useState(
+    new Date().toISOString().slice(0, 10),
+  );
   useEffect(() => {
     const fetchAttendanceData = async () => {
       try {
         const userDataString = localStorage.getItem("userData");
         const userData = userDataString ? JSON.parse(userDataString) : null;
         const userEmail = userData.email;
-        const currentDate = new Date()
-          .toISOString()
-          .slice(0, 10)
-          .replace(/-/g, "");
         const userRef = doc(db, "attendance", userEmail);
         const currentDateRef = doc(userRef, "dates", currentDate);
         const docSnap = await getDoc(currentDateRef);
@@ -75,37 +73,45 @@ export const AttendanceProvider: React.FC<{ children: ReactNode }> = ({
     };
 
     fetchAttendanceData();
+  }, [currentDate]);
+  useEffect(() => {
+    const updateDate = () => {
+      const today = new Date().toISOString().slice(0, 10);
+      setCurrentDate(today);
+    };
+
+    const now: Date = new Date();
+    const msUntilMidnight: number =
+      new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1).getTime() -
+      now.getTime();
+
+    const timer = setTimeout(updateDate, msUntilMidnight);
+
+    return () => clearTimeout(timer);
   }, []);
 
-  const updateAttendanceData = async (data: Partial<AttendanceData>) => {
-    try {
-      const userDataString = localStorage.getItem("userData");
-      const userData = userDataString ? JSON.parse(userDataString) : null;
-      const userEmail = userData.email;
+  const Value = useMemo(() => {
+    const updateAttendanceData = async (data: Partial<AttendanceData>) => {
+      try {
+        const userDataString = localStorage.getItem("userData");
+        const userData = userDataString ? JSON.parse(userDataString) : null;
+        const userEmail = userData.email;
+        const userRef = doc(db, "attendance", userEmail);
+        const currentDateRef = doc(userRef, "dates", currentDate);
 
-      const currentDate = new Date()
-        .toISOString()
-        .slice(0, 10)
-        .replace(/-/g, "");
-      const userRef = doc(db, "attendance", userEmail);
-      const currentDateRef = doc(userRef, "dates", currentDate);
+        await setDoc(currentDateRef, data, { merge: true });
 
-      await setDoc(currentDateRef, data, { merge: true });
+        setAttendanceData((prevData) => ({
+          ...prevData,
+          ...data,
+        }));
+      } catch (error) {
+        console.error("Error updating attendance data: ", error);
+      }
+    };
 
-      setAttendanceData((prevData) => ({
-        ...prevData,
-        ...data,
-      }));
-    } catch (error) {
-      console.error("Error updating attendance data: ", error);
-    }
-  };
-
-  const Value = useMemo(
-    () => ({ attendanceData, updateAttendanceData }),
-    [attendanceData],
-  );
-
+    return { attendanceData, updateAttendanceData };
+  }, [attendanceData, currentDate]);
   return (
     <AttendanceContext.Provider value={Value}>
       {children}

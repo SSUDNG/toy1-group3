@@ -18,6 +18,7 @@ import { useVacations, Vacation } from "../contexts/VacationContext";
 
 interface TAAProps {
   selectedVacationType: string;
+  defaultRowsPerPage: number;
 }
 
 interface RowProps {
@@ -65,11 +66,14 @@ const Row: React.FC<RowProps> = ({ row }) => {
   );
 };
 
-export default function TAAList({ selectedVacationType }: TAAProps) {
+export default function TAAList({
+  selectedVacationType,
+  defaultRowsPerPage,
+}: TAAProps) {
   const { vacations } = useVacations();
   const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(5);
-
+  const [rowsPerPage, setRowsPerPage] = React.useState(defaultRowsPerPage);
+  console.log(selectedVacationType);
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage);
   };

@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { Box, Button, Grid } from "@mui/material";
+import { Box, Button, Grid, useMediaQuery, useTheme } from "@mui/material";
 import HourglassEmptyIcon from "@mui/icons-material/HourglassEmpty";
 import useOnClickOutside from "hooks/useOnClickOutside";
 import styles from "../pages/ProfilePage/profilePage.module.css";
@@ -28,14 +28,17 @@ const ProfileWorkTime = () => {
     updateAttendanceData({
       endTime: currentTime,
       working: false,
-      isBtnValid: false, // 퇴근 시 isBtnValid을 false로 설정하여 버튼을 비활성화합니다.
+      isBtnValid: false,
     });
     setConfirmModalOpen(false);
   };
 
+  const theme = useTheme();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
+
   return (
     <div>
-      <Grid container spacing={2}>
+      <Grid container spacing={2} direction={isSmallScreen ? "column" : "row"}>
         <Grid item xs={6}>
           <Box className={styles.infoItem}>
             <span>출근 시간</span>
@@ -82,7 +85,13 @@ const ProfileWorkTime = () => {
               >
                 확인
               </Button>
-              <Button onClick={() => setConfirmModalOpen(false)}>취소</Button>
+              <Button
+                onClick={() => setConfirmModalOpen(false)}
+                variant="outlined"
+                color="secondary"
+              >
+                취소
+              </Button>
             </div>
           </div>
         </div>

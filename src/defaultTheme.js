@@ -57,6 +57,7 @@ const theme = createTheme({
           borderRadius: 8,
           width: "100%",
           maxWidth: 150,
+          height: 50,
           marginTop: 10,
         },
       },

@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, Box, Typography } from "@mui/material";
+import { Grid, Box, Typography, useMediaQuery, useTheme } from "@mui/material";
 
 import styles from "../pages/ProfilePage/profilePage.module.css";
 import { useAttendance } from "../contexts/AttendanceContext";
@@ -12,9 +12,16 @@ interface Props {
 const ProfileInfo: React.FC<Props> = ({ path }) => {
   const { attendanceData } = useAttendance();
   const { profileData } = useProfileData();
+  const theme = useTheme();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
   return (
-    <Grid container spacing={2} className={styles.infoContainer}>
-      <Grid item xs={path !== "main" ? 6 : 12} className={styles.photoBox}>
+    <Grid
+      container
+      spacing={2}
+      className={styles.infoContainer}
+      direction={isSmallScreen ? "column" : "row"}
+    >
+      <Grid direction="column" className={styles.photoBox} item xs={6}>
         <img
           src={
             profileData.photoURL

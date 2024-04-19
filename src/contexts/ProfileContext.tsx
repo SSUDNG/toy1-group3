@@ -6,7 +6,7 @@ import React, {
   ReactNode,
   useMemo,
 } from "react";
-import { doc, setDoc } from "firebase/firestore";
+import { doc, setDoc, getDoc } from "firebase/firestore";
 import { db } from "../firebase";
 import { ProfileData } from "../components/TypeDef";
 
@@ -44,8 +44,17 @@ export const ProfileDataProvider: React.FC<{ children: ReactNode }> = ({
       try {
         const userDataString = localStorage.getItem("userData");
         const userData = userDataString ? JSON.parse(userDataString) : null;
-        setProfileData(userData);
-        console.log(userData);
+        const userEmail = userData?.email;
+        if (!userEmail) return;
+        const userRef = doc(db, "users", userEmail);
+        const userDoc = await getDoc(userRef);
+
+        const fetchedData = userDoc.data();
+        if (fetchedData) {
+          setProfileData(fetchedData as ProfileData);
+        } else {
+          console.error("no data");
+        }
       } catch (error) {
         console.error("Error fetching attendance data: ", error);
       }

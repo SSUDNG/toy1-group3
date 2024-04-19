@@ -106,8 +106,8 @@ function App() {
 
       <div className={styles.content}>
         <VacationProvider>
-          <ProfileDataProvider>
-            <AttendanceProvider>
+          <AttendanceProvider>
+            <ProfileDataProvider>
               <Routes>
                 <Route
                   path="/login"
@@ -116,12 +116,15 @@ function App() {
                 <Route path="/" element={<MainPage />} />
                 <Route path="/profile" element={<ProfilePage />} />
                 <Route path="/news" element={<NewsPage isMain={false} />} />
-                <Route path="/TAA" element={<TAAListPage />} />
+                <Route
+                  path="/TAA"
+                  element={<TAAListPage defaultRowsPerPage={5} />}
+                />
                 <Route path="/request" element={<Request />} />
                 <Route path="/fire" element={<FireTest />} />
               </Routes>
-            </AttendanceProvider>
-          </ProfileDataProvider>
+            </ProfileDataProvider>
+          </AttendanceProvider>
         </VacationProvider>
       </div>
     </div>
