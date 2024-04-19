@@ -1,6 +1,6 @@
 # **[👨‍💻 토이프로젝트1 - 3조]**
 
-[배포사이트](https://www.google.com/)  
+[배포사이트](https://kdt8-toyproject-group3.netlify.app/login)  
 인트라넷 서비스를 제작했습니다.  
 React, TypeScript, Firebase, ESLint, Figma 등을 사용했습니다.
 
@@ -8,8 +8,8 @@ React, TypeScript, Firebase, ESLint, Figma 등을 사용했습니다.
 
 ### 팀원
 
-- 승헌 : 파이어베이스 이용해 로그인 구현, News/SideBar 구현 
--
+- 승헌 : 파이어베이스 이용해 Google OAuth 로그인 구현, News/SideBar 구현 
+- 상화 : 개발환경 구축, 휴가정보 표시 페이지(Vacation tab) 구현, Context API 적용하여 상태 관리, FireStore에 휴가정보 등록
 -
 -
 
