@@ -5,6 +5,7 @@ import News from "pages/NewsPage/News";
 import styles from "./Main.module.css";
 
 function MainPage() {
+  const defaultRowsPerPage = 3;
   return (
     <div className={styles.container}>
       <section className={styles.top}>
@@ -12,7 +13,7 @@ function MainPage() {
         <Clock />
       </section>
       <section className={styles.middle}>
-        <TAAListPage />
+        <TAAListPage defaultRowsPerPage={defaultRowsPerPage} />
       </section>
       <section className={styles.bottom}>
         <News isMain />
