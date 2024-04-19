@@ -4,7 +4,11 @@ import TAAHeader from "../../components/TAAHeader";
 import TAAList from "../../components/TAAList";
 import styles from "./TAA.module.css";
 
-function TAAListPage() {
+interface TAAListPageProps {
+  defaultRowsPerPage: number;
+}
+
+function TAAListPage({ defaultRowsPerPage }: TAAListPageProps) {
   const [selectedVacationType, setSelectedVacationType] = useState("전체");
 
   return (
@@ -13,7 +17,10 @@ function TAAListPage() {
         current={selectedVacationType}
         onSelect={setSelectedVacationType}
       />
-      <TAAList selectedVacationType={selectedVacationType} />
+      <TAAList
+        selectedVacationType={selectedVacationType}
+        defaultRowsPerPage={defaultRowsPerPage}
+      />
     </div>
   );
 }

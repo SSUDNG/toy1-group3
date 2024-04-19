@@ -120,7 +120,10 @@ function App() {
             <Route path="/" element={<MainPage />} />
             <Route path="/profile" element={<ProfilePage />} />
             <Route path="/news" element={<NewsPage />} />
-            <Route path="/TAA" element={<TAAListPage />} />
+            <Route
+              path="/TAA"
+              element={<TAAListPage defaultRowsPerPage={5} />}
+            />
             <Route path="/request" element={<Request />} />
             <Route path="/fire" element={<FireTest />} />
           </Routes>
