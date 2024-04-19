@@ -2,20 +2,12 @@ import React, { useRef, useState } from "react";
 import { Box, Button, Grid } from "@mui/material";
 import HourglassEmptyIcon from "@mui/icons-material/HourglassEmpty";
 import useOnClickOutside from "hooks/useOnClickOutside";
-import { ProfileData } from "./TypeDef";
 import styles from "../pages/ProfilePage/profilePage.module.css";
+import { useAttendance } from "../contexts/AttendanceContext";
 
-interface WorkTimeProps {
-  profileData: Partial<ProfileData>;
-  setProfileData: React.Dispatch<React.SetStateAction<ProfileData>>;
-}
-const ProfileWorkTime: React.FC<WorkTimeProps> = ({
-  profileData,
-  setProfileData,
-}) => {
+const ProfileWorkTime = () => {
   const [confirmModalOpen, setConfirmModalOpen] = useState<boolean>(false);
-  const [working, setWorking] = useState<boolean>(false);
-
+  const { attendanceData, updateAttendanceData } = useAttendance();
   const ref = useRef<HTMLDivElement>(null);
 
   useOnClickOutside(ref, () => {
@@ -24,23 +16,21 @@ const ProfileWorkTime: React.FC<WorkTimeProps> = ({
 
   const handleConfirmStartWork = () => {
     const currentTime = new Date().toLocaleTimeString();
-    setProfileData((prevData) => ({
-      ...prevData,
+    updateAttendanceData({
       startTime: currentTime,
       working: true,
-    }));
+    });
     setConfirmModalOpen(false);
-    setWorking(true);
   };
+
   const handleConfirmEndWork = () => {
     const currentTime = new Date().toLocaleTimeString();
-    setProfileData((prevData) => ({
-      ...prevData,
+    updateAttendanceData({
       endTime: currentTime,
       working: false,
-    }));
+      isBtnValid: false,
+    });
     setConfirmModalOpen(false);
-    setWorking(false);
   };
 
   return (
@@ -49,19 +39,24 @@ const ProfileWorkTime: React.FC<WorkTimeProps> = ({
         <Grid item xs={6}>
           <Box className={styles.infoItem}>
             <span>출근 시간</span>
-            <span>{profileData.startTime || "-"}</span>
+            <span>{attendanceData.startTime || "-"}</span>
           </Box>
         </Grid>
         <Grid item xs={6}>
           <Box className={styles.infoItem}>
             <span>퇴근 시간</span>
-            <span>{profileData.endTime || "-"}</span>
+            <span>{attendanceData.endTime || "-"}</span>
           </Box>
         </Grid>
 
         <Grid item xs={12} className={styles.workBtn}>
-          {!working ? (
-            <Button onClick={() => setConfirmModalOpen(true)}>출근하기</Button>
+          {!attendanceData.working ? (
+            <Button
+              onClick={() => setConfirmModalOpen(true)}
+              disabled={!attendanceData.isBtnValid}
+            >
+              출근하기
+            </Button>
           ) : (
             <Button onClick={() => setConfirmModalOpen(true)}>퇴근하기</Button>
           )}
@@ -72,7 +67,7 @@ const ProfileWorkTime: React.FC<WorkTimeProps> = ({
         <div className={styles.modalBg}>
           <div ref={ref} className={styles.confirmModal}>
             <HourglassEmptyIcon fontSize="large" />
-            {!working ? (
+            {!attendanceData.working ? (
               <p>근무를 시작하시겠습니까?</p>
             ) : (
               <p>근무를 종료하시겠습니까?</p>
@@ -80,7 +75,9 @@ const ProfileWorkTime: React.FC<WorkTimeProps> = ({
             <div className={styles.modalBot}>
               <Button
                 onClick={
-                  !working ? handleConfirmStartWork : handleConfirmEndWork
+                  !attendanceData.working
+                    ? handleConfirmStartWork
+                    : handleConfirmEndWork
                 }
               >
                 확인

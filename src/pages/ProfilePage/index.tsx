@@ -41,10 +41,7 @@ const ProfilePage: React.FC = () => {
         setEditModalOpen={setEditModalOpen}
       />
       <ProfileInfo profileData={profileData} />
-      <ProfileWorkTime
-        profileData={profileData}
-        setProfileData={setProfileData}
-      />
+      <ProfileWorkTime />
       {editModalOpen && (
         <EditModal
           editProfile={editProfile}
