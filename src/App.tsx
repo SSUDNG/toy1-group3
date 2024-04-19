@@ -21,9 +21,6 @@ import MainPage from "./pages/MainPage";
 import NewsPage from "./pages/NewsPage/News";
 import Request from "./pages/RequestPage";
 import styles from "./App.module.css";
-import app from "./firebase";
-
-console.log(app);
 
 function App() {
   const userDataString = localStorage.getItem("userData");
