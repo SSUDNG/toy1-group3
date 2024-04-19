@@ -38,7 +38,7 @@ const News = ({ isMain }: NewsProps) => {
       imgPath: "/images/news4.png",
     },
   ];
-  console.log(isMain);
+
   return (
     <div className={styles.newsWrap}>
       <Typography variant="h1">공지 사항</Typography>

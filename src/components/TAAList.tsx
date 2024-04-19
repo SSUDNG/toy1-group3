@@ -69,7 +69,6 @@ export default function TAAList({ selectedVacationType }: TAAProps) {
   const { vacations } = useVacations();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
-  console.log(selectedVacationType);
 
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage);
@@ -108,11 +107,15 @@ export default function TAAList({ selectedVacationType }: TAAProps) {
             {selectedVacationType === "전체"
               ? vacations
                   .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                  .map((row: Vacation) => <Row row={row} key={row.email} />)
+                  .map((row: Vacation) => (
+                    <Row row={row} key={row.email + row.startDate} />
+                  ))
               : vacations
                   .filter((row) => row.vacationType === selectedVacationType)
                   .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                  .map((row: Vacation) => <Row row={row} key={row.email} />)}
+                  .map((row: Vacation) => (
+                    <Row row={row} key={row.email + row.startDate} />
+                  ))}
           </TableBody>
         </Table>
       </TableContainer>
