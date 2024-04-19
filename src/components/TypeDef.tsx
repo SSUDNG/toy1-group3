@@ -16,3 +16,13 @@ export type ProfileData = {
   photoURL: string;
   working: boolean;
 };
+
+export interface RequestData {
+  email: string;
+  name: string;
+  vacationType: string;
+  startDate: string | null;
+  endDate: string | null;
+  reason: string;
+  notes: string;
+}
