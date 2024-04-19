@@ -14,6 +14,7 @@ import FireTest from "pages/FIreCloudTestPage/FireTestPage";
 import { DefaultProfile } from "components/TypeDef";
 import FireCreate from "components/FireCreate";
 import { ReadDoc } from "components/FireRead";
+import { VacationProvider } from "contexts/VacationContext";
 import ProfilePage from "./pages/ProfilePage";
 import LoginPage from "./pages/LoginPage/Login";
 import MainPage from "./pages/MainPage";
@@ -103,25 +104,23 @@ function App() {
   };
   return (
     <div className={styles.app}>
-      {pathname !== "/login" && (
-        <nav>
-          <SideBar handleSignOut={handleSignOut} />
-        </nav>
-      )}
+      {pathname !== "/login" && <SideBar handleSignOut={handleSignOut} />}
 
       <div className={styles.content}>
-        <Routes>
-          <Route
-            path="/login"
-            element={<LoginPage handleAuth={handleAuth} />}
-          />
-          <Route path="/" element={<MainPage />} />
-          <Route path="/profile" element={<ProfilePage />} />
-          <Route path="/news" element={<NewsPage />} />
-          <Route path="/TAA" element={<TAAListPage />} />
-          <Route path="/request" element={<Request />} />
-          <Route path="/fire" element={<FireTest />} />
-        </Routes>
+        <VacationProvider>
+          <Routes>
+            <Route
+              path="/login"
+              element={<LoginPage handleAuth={handleAuth} />}
+            />
+            <Route path="/" element={<MainPage />} />
+            <Route path="/profile" element={<ProfilePage />} />
+            <Route path="/news" element={<NewsPage />} />
+            <Route path="/TAA" element={<TAAListPage />} />
+            <Route path="/request" element={<Request />} />
+            <Route path="/fire" element={<FireTest />} />
+          </Routes>
+        </VacationProvider>
       </div>
     </div>
   );

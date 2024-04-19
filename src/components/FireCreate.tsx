@@ -17,7 +17,6 @@ export default function FireCreate(
       position: profileData.position,
     })
       .then(() => {
-        console.log("written!");
         resolve();
       })
       .catch((error) => {
