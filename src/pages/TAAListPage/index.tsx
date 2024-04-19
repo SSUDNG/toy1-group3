@@ -10,6 +10,7 @@ interface TAAListPageProps {
 }
 
 function TAAListPage({ defaultRowsPerPage }: TAAListPageProps) {
+  const { vacations } = useVacations();
   const [selectedVacationType, setSelectedVacationType] = useState("전체");
 
   useEffect(() => {
