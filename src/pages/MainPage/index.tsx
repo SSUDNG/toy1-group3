@@ -16,7 +16,7 @@ function MainPage() {
         <TAAListPage defaultRowsPerPage={defaultRowsPerPage} />
       </section>
       <section className={styles.bottom}>
-        <News />
+        <News isMain />
       </section>
     </div>
   );

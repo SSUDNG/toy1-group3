@@ -7,6 +7,8 @@ import React, {
   useMemo,
 } from "react";
 import {
+  doc,
+  setDoc,
   collection,
   getDocs,
   query,
@@ -45,6 +47,7 @@ export const VacationProvider: React.FC<{ children: ReactNode }> = ({
 }) => {
   const [vacations, setVacations] = useState<Vacation[]>([]);
 
+  const [test, setTest] = useState(false);
   useEffect(() => {
     const fetchVacations = async () => {
       const q = query(collection(db, "vacations"));
@@ -54,18 +57,27 @@ export const VacationProvider: React.FC<{ children: ReactNode }> = ({
         fetchedVacations.push({
           ...document.data(),
         } as Vacation);
-        console.log(fetchedVacations);
-        console.log("VacationsContext is working!");
       });
       setVacations(fetchedVacations);
     };
     fetchVacations();
-  }, []);
+  }, [test]);
 
-  const addVacation = (vacation: Vacation) => {
-    console.log(vacation, "addVacation Clicked!");
-    // Firebase에 새로운 휴가 정보를 추가하는 비동기 함수
-    // db.collection("vacations").add(vacation) 등으로 구현
+  const addVacation = async (vacation: Vacation) => {
+    try {
+      await setDoc(
+        doc(
+          collection(db, "vacations"),
+          `${vacation.email}${vacation.startDate}`,
+        ),
+        vacation,
+      );
+      console.log("Vacation added successfully!");
+    } catch (error) {
+      console.error("Error adding vacation: ", error);
+    } finally {
+      setTest((prev) => !prev);
+    }
   };
 
   const value = useMemo(() => ({ vacations, addVacation }), [vacations]);

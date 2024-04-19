@@ -4,7 +4,10 @@ import { NewsItem } from "type";
 import styles from "./News.module.css";
 import Post from "../../components/Post";
 
-const News = () => {
+interface NewsProps {
+  isMain: boolean;
+}
+const News = ({ isMain }: NewsProps) => {
   const newsList: NewsItem[] = [
     {
       tit: "미국 가정집 천장 뚫은 ‘정체불명’ 물체…알고보니 3년전 우주쓰레기",
@@ -35,15 +38,22 @@ const News = () => {
       imgPath: "/images/news4.png",
     },
   ];
+
   return (
     <div className={styles.newsWrap}>
-      <Typography variant="h1">기업 공지 사항</Typography>
+      <Typography variant="h1">공지 사항</Typography>
       <ul className={styles.newsList}>
-        {newsList.map((news) => (
-          <li key={news.tit}>
-            <Post news={news} />
-          </li>
-        ))}
+        {isMain
+          ? newsList.slice(0, 3).map((news) => (
+              <li key={news.tit}>
+                <Post news={news} />
+              </li>
+            ))
+          : newsList.map((news) => (
+              <li key={news.tit}>
+                <Post news={news} />
+              </li>
+            ))}
       </ul>
     </div>
   );

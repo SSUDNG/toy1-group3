@@ -21,9 +21,6 @@ import MainPage from "./pages/MainPage";
 import NewsPage from "./pages/NewsPage/News";
 import Request from "./pages/RequestPage";
 import styles from "./App.module.css";
-import app from "./firebase";
-
-console.log(app);
 
 function App() {
   const userDataString = localStorage.getItem("userData");
@@ -34,7 +31,6 @@ function App() {
   const navigate = useNavigate();
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [userData, setUserData] = useState<User | null>(initialUserData);
-  console.log(pathname);
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -104,11 +100,7 @@ function App() {
   };
   return (
     <div className={styles.app}>
-      {pathname !== "/login" && (
-        <nav>
-          <SideBar handleSignOut={handleSignOut} />
-        </nav>
-      )}
+      {pathname !== "/login" && <SideBar handleSignOut={handleSignOut} />}
 
       <div className={styles.content}>
         <VacationProvider>
@@ -119,7 +111,7 @@ function App() {
             />
             <Route path="/" element={<MainPage />} />
             <Route path="/profile" element={<ProfilePage />} />
-            <Route path="/news" element={<NewsPage />} />
+            <Route path="/news" element={<NewsPage isMain={false} />} />
             <Route
               path="/TAA"
               element={<TAAListPage defaultRowsPerPage={5} />}
