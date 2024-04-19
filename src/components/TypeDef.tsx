@@ -7,14 +7,11 @@ export interface DefaultProfile {
 }
 
 export type ProfileData = {
+  email: string;
   name: string;
   phoneNumber: string;
-  email: string;
-  position: string;
-  startTime: string | null;
-  endTime: string | null;
   photoURL: string;
-  working: boolean;
+  position: string;
 };
 
 export interface RequestData {

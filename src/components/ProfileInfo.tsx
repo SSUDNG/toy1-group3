@@ -2,13 +2,16 @@ import React from "react";
 import { Grid, Box, Typography, useMediaQuery, useTheme } from "@mui/material";
 
 import styles from "../pages/ProfilePage/profilePage.module.css";
-import { ProfileData } from "./TypeDef";
+import { useAttendance } from "../contexts/AttendanceContext";
+import { useProfileData } from "../contexts/ProfileContext";
 
-interface InfoProps {
-  profileData: Partial<ProfileData>;
+interface Props {
+  path: string;
 }
 
-const ProfileInfo: React.FC<InfoProps> = ({ profileData }) => {
+const ProfileInfo: React.FC<Props> = ({ path }) => {
+  const { attendanceData } = useAttendance();
+  const { profileData } = useProfileData();
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
   return (
@@ -33,30 +36,32 @@ const ProfileInfo: React.FC<InfoProps> = ({ profileData }) => {
             width={15}
             height={15}
             borderRadius="50%"
-            bgcolor={profileData.working ? "#00d603" : "#BDBDBD"}
+            bgcolor={attendanceData.working ? "#00d603" : "#BDBDBD"}
             mr={1}
           />
           <Typography variant="body1">
-            {profileData.working ? "근무중" : "근무중 아님"}
+            {attendanceData.working ? "근무중" : "근무중 아님"}
           </Typography>
         </Box>
       </Grid>
-      <Grid item xs={6}>
-        <Box className={styles.infoBox}>
-          <Box className={styles.infoItem}>
-            <span>Position</span>
-            <Typography variant="body1">{profileData.position}</Typography>
+      {path !== "main" ? (
+        <Grid item xs={6}>
+          <Box className={styles.infoBox}>
+            <Box className={styles.infoItem}>
+              <span>Position</span>
+              <Typography variant="body1">{profileData.position}</Typography>
+            </Box>
+            <Box className={styles.infoItem}>
+              <span>Email</span>
+              <Typography variant="body1">{profileData.email}</Typography>
+            </Box>
+            <Box className={styles.infoItem}>
+              <span>Phone</span>
+              <Typography variant="body1">{profileData.phoneNumber}</Typography>
+            </Box>
           </Box>
-          <Box className={styles.infoItem}>
-            <span>Email</span>
-            <Typography variant="body1">{profileData.email}</Typography>
-          </Box>
-          <Box className={styles.infoItem}>
-            <span>Phone</span>
-            <Typography variant="body1">{profileData.phoneNumber}</Typography>
-          </Box>
-        </Box>
-      </Grid>
+        </Grid>
+      ) : null}
     </Grid>
   );
 };
