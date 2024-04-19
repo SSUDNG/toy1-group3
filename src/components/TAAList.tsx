@@ -30,7 +30,7 @@ const Row: React.FC<RowProps> = ({ row }) => {
   return (
     <>
       <TableRow>
-        <TableCell align="center" style={{ minWidth: 70 }}>
+        <TableCell align="center" style={{ minWidth: 10 }}>
           <IconButton
             aria-label="expand row"
             size="small"
@@ -39,16 +39,16 @@ const Row: React.FC<RowProps> = ({ row }) => {
             {open ? <KeyboardArrowUp /> : <KeyboardArrowDown />}
           </IconButton>
         </TableCell>
-        <TableCell align="center" style={{ minWidth: 200 }}>
+        <TableCell align="center" style={{ minWidth: 50 }}>
           {row.name}
         </TableCell>
-        <TableCell align="center" style={{ minWidth: 200 }}>
+        <TableCell align="center" style={{ minWidth: 50 }}>
           {row.vacationType}
         </TableCell>
-        <TableCell align="center" style={{ minWidth: 200 }}>
+        <TableCell align="center" style={{ minWidth: 50 }}>
           {row.startDate}
         </TableCell>
-        <TableCell align="center" style={{ minWidth: 200 }}>
+        <TableCell align="center" style={{ minWidth: 50 }}>
           {row.endDate}
         </TableCell>
       </TableRow>
@@ -70,6 +70,7 @@ export default function TAAList({ selectedVacationType }: TAAProps) {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
   console.log(selectedVacationType);
+
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage);
   };
@@ -87,17 +88,17 @@ export default function TAAList({ selectedVacationType }: TAAProps) {
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
             <TableRow>
-              <TableCell align="center" style={{ minWidth: 70 }} />
-              <TableCell align="center" style={{ minWidth: 200 }}>
+              <TableCell align="center" style={{ minWidth: 10 }} />
+              <TableCell align="center" style={{ minWidth: 50 }}>
                 성명
               </TableCell>
-              <TableCell align="center" style={{ minWidth: 200 }}>
+              <TableCell align="center" style={{ minWidth: 50 }}>
                 휴가종류
               </TableCell>
-              <TableCell align="center" style={{ minWidth: 200 }}>
+              <TableCell align="center" style={{ minWidth: 50 }}>
                 시작일
               </TableCell>
-              <TableCell align="center" style={{ minWidth: 200 }}>
+              <TableCell align="center" style={{ minWidth: 50 }}>
                 종료일
               </TableCell>
             </TableRow>
@@ -116,9 +117,15 @@ export default function TAAList({ selectedVacationType }: TAAProps) {
         </Table>
       </TableContainer>
       <TablePagination
-        rowsPerPageOptions={[5, 10, 15]}
+        rowsPerPageOptions={[3, 5, 10]}
         component="div"
-        count={vacations.length}
+        count={
+          selectedVacationType === "전체"
+            ? vacations.length
+            : vacations.filter(
+                (row) => row.vacationType === selectedVacationType,
+              ).length
+        }
         rowsPerPage={rowsPerPage}
         page={page}
         onPageChange={handleChangePage}

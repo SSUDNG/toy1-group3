@@ -1,19 +1,24 @@
 import React, { useState } from "react";
 import { Button, TextField, MenuItem, FormControl, Grid } from "@mui/material";
 import Typography from "@mui/material/Typography";
+import { useVacations, Vacation } from "contexts/VacationContext";
 import ConfirmationModal from "../../components/RequestConfirm";
 import styles from "./Request.module.css";
 
-interface RequestData {
-  vacationType: string;
-  startDate: string | null;
-  endDate: string | null;
-  reason: string;
-  notes: string;
-}
-
 const Request: React.FunctionComponent = () => {
-  const [requestData, setRequestData] = useState<RequestData>({
+  const { addVacation } = useVacations();
+
+  const userDataString = localStorage.getItem("userData");
+  const userData = userDataString
+    ? JSON.parse(userDataString)
+    : "{name: 'none', email: 'none'}";
+
+  console.log("userData is here");
+  console.log(userData);
+
+  const [requestData, setRequestData] = useState<Vacation>({
+    name: userData.name,
+    email: userData.email,
     vacationType: "",
     startDate: null,
     endDate: null,
@@ -38,6 +43,7 @@ const Request: React.FunctionComponent = () => {
   };
 
   const handleConfirmSubmit = () => {
+    addVacation(requestData);
     const savedRequests = JSON.parse(
       localStorage.getItem("vacationRequests") || "[]",
     );
@@ -46,6 +52,8 @@ const Request: React.FunctionComponent = () => {
       JSON.stringify([...savedRequests, requestData]),
     );
     setRequestData({
+      name: "",
+      email: "",
       vacationType: "",
       startDate: null,
       endDate: null,
@@ -61,6 +69,8 @@ const Request: React.FunctionComponent = () => {
 
   const handleReset = () => {
     setRequestData({
+      name: "",
+      email: "",
       vacationType: "",
       startDate: null,
       endDate: null,
