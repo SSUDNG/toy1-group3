@@ -37,7 +37,7 @@ const News = () => {
   ];
   return (
     <div className={styles.newsWrap}>
-      <Typography variant="h1">기업 공지 사항</Typography>
+      <Typography variant="h1">공지 사항</Typography>
       <ul className={styles.newsList}>
         {newsList.map((news) => (
           <li key={news.tit}>

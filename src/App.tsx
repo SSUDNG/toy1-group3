@@ -104,11 +104,7 @@ function App() {
   };
   return (
     <div className={styles.app}>
-      {pathname !== "/login" && (
-        <nav>
-          <SideBar handleSignOut={handleSignOut} />
-        </nav>
-      )}
+      {pathname !== "/login" && <SideBar handleSignOut={handleSignOut} />}
 
       <div className={styles.content}>
         <VacationProvider>
