@@ -47,6 +47,7 @@ const EditModal: React.FC<EditModalProps> = ({
           : prevData.photoURL,
     }));
     setEditModalOpen(false);
+    console.log(profileData.photoURL);
   };
 
   const handlePictureChange = (e: React.ChangeEvent<HTMLInputElement>) => {
