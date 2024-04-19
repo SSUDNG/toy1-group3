@@ -1,17 +1,10 @@
-export interface Date {
-  year: number;
-  month: number;
-  day: number;
-}
-
-export interface AttandanceInfo {
+export interface DefaultProfile {
   name: string;
-  key: number;
-  category: string;
-  begin: Date;
-  end: Date;
-  comment: string;
-};
+  email: string;
+  photoURL: string;
+  phoneNumber: string;
+  position: string;
+}
 
 export type ProfileData = {
   name: string;
@@ -23,3 +16,14 @@ export type ProfileData = {
   photoURL: string;
   working: boolean;
 };
+
+// VacationContext의 Vacation 인터페이스 확인해보세요! 동일합니다! :)
+export interface RequestData {
+  email: string;
+  name: string;
+  vacationType: string;
+  startDate: string | null;
+  endDate: string | null;
+  reason: string;
+  notes: string;
+}

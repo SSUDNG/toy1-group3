@@ -8,9 +8,13 @@ import {
   signOut,
   User,
 } from "firebase/auth";
-
 import SideBar from "components/SideBar";
 import TAAListPage from "pages/TAAListPage";
+import FireTest from "pages/FIreCloudTestPage/FireTestPage";
+import { DefaultProfile } from "components/TypeDef";
+import FireCreate from "components/FireCreate";
+import { ReadDoc } from "components/FireRead";
+import { VacationProvider } from "contexts/VacationContext";
 import ProfilePage from "./pages/ProfilePage";
 import LoginPage from "./pages/LoginPage/Login";
 import MainPage from "./pages/MainPage";
@@ -47,7 +51,42 @@ function App() {
       .then((data) => {
         const newData = data.user;
         setUserData(newData);
-        localStorage.setItem("userData", JSON.stringify(data.user));
+        const target = data.user.email as string;
+
+        ReadDoc("users", target)
+          .then((Readdata) => {
+            if (Readdata) {
+              const profileData: DefaultProfile = {
+                name: Readdata.name,
+                email: Readdata.email,
+                photoURL: Readdata.photoURL,
+                phoneNumber: Readdata.phoneNumber,
+                position: Readdata.position,
+              };
+              console.log(profileData);
+              localStorage.setItem("userData", JSON.stringify(profileData));
+            } else {
+              const profileData: DefaultProfile = {
+                name: data.user.displayName
+                  ? data.user.displayName
+                  : "성함을 입력해주세요",
+                email: data.user.email as string,
+                photoURL: data.user.photoURL
+                  ? data.user.photoURL
+                  : "https://i.stack.imgur.com/l60Hf.png",
+                phoneNumber: data.user.phoneNumber
+                  ? data.user.phoneNumber
+                  : "휴대폰 번호를 입력해주세요",
+                position: "포지션을 입력해주세요",
+              };
+              console.log(profileData);
+              FireCreate("users", profileData);
+              localStorage.setItem("userData", JSON.stringify(profileData));
+            }
+          })
+          .catch((error) => {
+            console.error("Error reading document:", error);
+          });
       })
       .catch((error) => {
         console.log(error);
@@ -68,17 +107,20 @@ function App() {
       {pathname !== "/login" && <SideBar handleSignOut={handleSignOut} />}
 
       <div className={styles.content}>
-        <Routes>
-          <Route
-            path="/login"
-            element={<LoginPage handleAuth={handleAuth} />}
-          />
-          <Route path="/" element={<MainPage />} />
-          <Route path="/profile" element={<ProfilePage />} />
-          <Route path="/news" element={<NewsPage />} />
-          <Route path="/TAA" element={<TAAListPage />} />
-          <Route path="/request" element={<Request />} />
-        </Routes>
+        <VacationProvider>
+          <Routes>
+            <Route
+              path="/login"
+              element={<LoginPage handleAuth={handleAuth} />}
+            />
+            <Route path="/" element={<MainPage />} />
+            <Route path="/profile" element={<ProfilePage />} />
+            <Route path="/news" element={<NewsPage />} />
+            <Route path="/TAA" element={<TAAListPage />} />
+            <Route path="/request" element={<Request />} />
+            <Route path="/fire" element={<FireTest />} />
+          </Routes>
+        </VacationProvider>
       </div>
     </div>
   );
