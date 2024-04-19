@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { Box, Button, Grid } from "@mui/material";
+import { Box, Button, Grid, useMediaQuery, useTheme } from "@mui/material";
 import HourglassEmptyIcon from "@mui/icons-material/HourglassEmpty";
 import useOnClickOutside from "hooks/useOnClickOutside";
 import { ProfileData } from "./TypeDef";
@@ -43,9 +43,12 @@ const ProfileWorkTime: React.FC<WorkTimeProps> = ({
     setWorking(false);
   };
 
+  const theme = useTheme();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
+
   return (
     <div>
-      <Grid container spacing={2}>
+      <Grid container spacing={2} direction={isSmallScreen ? "column" : "row"}>
         <Grid item xs={6}>
           <Box className={styles.infoItem}>
             <span>출근 시간</span>

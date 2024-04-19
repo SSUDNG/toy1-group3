@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, Box, Typography } from "@mui/material";
+import { Grid, Box, Typography, useMediaQuery, useTheme } from "@mui/material";
 
 import styles from "../pages/ProfilePage/profilePage.module.css";
 import { ProfileData } from "./TypeDef";
@@ -9,8 +9,15 @@ interface InfoProps {
 }
 
 const ProfileInfo: React.FC<InfoProps> = ({ profileData }) => {
+  const theme = useTheme();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
   return (
-    <Grid container spacing={2} className={styles.infoContainer}>
+    <Grid
+      container
+      spacing={2}
+      className={styles.infoContainer}
+      direction={isSmallScreen ? "column" : "row"}
+    >
       <Grid direction="column" className={styles.photoBox} item xs={6}>
         <img
           src={

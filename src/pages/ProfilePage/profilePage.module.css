@@ -20,11 +20,11 @@
 }
 .infoContainer {
   margin-bottom: 20px;
+  justify-content: center;
 }
 .infoItem {
-  min-width: 300px;
   height: 60px;
-  background-color: #FAFAFA;
+  border: 1px solid #EEEEEE;
   border-radius: 8px;
   position: relative;
   display: flex;
