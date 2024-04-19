@@ -16,15 +16,13 @@ import FireCreate from "components/FireCreate";
 import { ReadDoc } from "components/FireRead";
 import { VacationProvider } from "contexts/VacationContext";
 import { AttendanceProvider } from "contexts/AttendanceContext";
+import { ProfileDataProvider } from "contexts/ProfileContext";
 import ProfilePage from "./pages/ProfilePage";
 import LoginPage from "./pages/LoginPage/Login";
 import MainPage from "./pages/MainPage";
 import NewsPage from "./pages/NewsPage/News";
 import Request from "./pages/RequestPage";
 import styles from "./App.module.css";
-import app from "./firebase";
-
-console.log(app);
 
 function App() {
   const userDataString = localStorage.getItem("userData");
@@ -35,7 +33,6 @@ function App() {
   const navigate = useNavigate();
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [userData, setUserData] = useState<User | null>(initialUserData);
-  console.log(pathname);
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -109,20 +106,22 @@ function App() {
 
       <div className={styles.content}>
         <VacationProvider>
-          <AttendanceProvider>
-            <Routes>
-              <Route
-                path="/login"
-                element={<LoginPage handleAuth={handleAuth} />}
-              />
-              <Route path="/" element={<MainPage />} />
-              <Route path="/profile" element={<ProfilePage />} />
-              <Route path="/news" element={<NewsPage />} />
-              <Route path="/TAA" element={<TAAListPage />} />
-              <Route path="/request" element={<Request />} />
-              <Route path="/fire" element={<FireTest />} />
-            </Routes>
-          </AttendanceProvider>
+          <ProfileDataProvider>
+            <AttendanceProvider>
+              <Routes>
+                <Route
+                  path="/login"
+                  element={<LoginPage handleAuth={handleAuth} />}
+                />
+                <Route path="/" element={<MainPage />} />
+                <Route path="/profile" element={<ProfilePage />} />
+                <Route path="/news" element={<NewsPage isMain={false} />} />
+                <Route path="/TAA" element={<TAAListPage />} />
+                <Route path="/request" element={<Request />} />
+                <Route path="/fire" element={<FireTest />} />
+              </Routes>
+            </AttendanceProvider>
+          </ProfileDataProvider>
         </VacationProvider>
       </div>
     </div>

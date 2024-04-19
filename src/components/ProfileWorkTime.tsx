@@ -28,7 +28,7 @@ const ProfileWorkTime = () => {
     updateAttendanceData({
       endTime: currentTime,
       working: false,
-      isBtnValid: false,
+      isBtnValid: false, // 퇴근 시 isBtnValid을 false로 설정하여 버튼을 비활성화합니다.
     });
     setConfirmModalOpen(false);
   };

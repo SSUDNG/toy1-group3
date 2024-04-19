@@ -1,25 +1,19 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { Box, Button, TextField, Typography } from "@mui/material";
 import UploadFileIcon from "@mui/icons-material/UploadFile";
 import useOnClickOutside from "hooks/useOnClickOutside";
 import { ProfileData } from "./TypeDef";
 import styles from "../pages/ProfilePage/profilePage.module.css";
+import { useProfileData } from "../contexts/ProfileContext";
 
 interface EditModalProps {
-  editProfile: Partial<ProfileData>;
-  profileData: Partial<ProfileData>;
-  setProfileData: React.Dispatch<React.SetStateAction<ProfileData>>;
-  setEditProfile: React.Dispatch<React.SetStateAction<Partial<ProfileData>>>;
   setEditModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const EditModal: React.FC<EditModalProps> = ({
-  editProfile,
-  profileData,
-  setProfileData,
-  setEditProfile,
-  setEditModalOpen,
-}) => {
+const EditModal: React.FC<EditModalProps> = ({ setEditModalOpen }) => {
+  const { profileData, updateProfileData } = useProfileData();
+  const [editProfile, setEditProfile] = useState<ProfileData>(profileData);
+
   const handleChange = (key: keyof Partial<ProfileData>, value: string) => {
     setEditProfile((prevProfile) => ({
       ...prevProfile,
@@ -28,26 +22,8 @@ const EditModal: React.FC<EditModalProps> = ({
   };
 
   const handleSaveEdit = () => {
-    setProfileData((prevData) => ({
-      ...prevData,
-      name: editProfile.name !== undefined ? editProfile.name : prevData.name,
-      phoneNumber:
-        editProfile.phoneNumber !== undefined
-          ? editProfile.phoneNumber
-          : prevData.phoneNumber,
-      email:
-        editProfile.email !== undefined ? editProfile.email : prevData.email,
-      position:
-        editProfile.position !== undefined
-          ? editProfile.position
-          : prevData.position,
-      photoURL:
-        editProfile.photoURL !== undefined
-          ? editProfile.photoURL
-          : prevData.photoURL,
-    }));
+    updateProfileData(editProfile);
     setEditModalOpen(false);
-    console.log(profileData.photoURL);
   };
 
   const handlePictureChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -65,10 +41,10 @@ const EditModal: React.FC<EditModalProps> = ({
   };
 
   const ref = useRef<HTMLDivElement>(null);
-
   useOnClickOutside(ref, () => {
     setEditModalOpen(false);
   });
+
   return (
     <div className={styles.modalBg}>
       <div className={styles.editModal} ref={ref}>
@@ -81,7 +57,7 @@ const EditModal: React.FC<EditModalProps> = ({
                   ? editProfile.photoURL
                   : "/images/profileDefault.jpeg"
               }
-              alt={profileData.name}
+              alt={editProfile.name}
             />
             <label htmlFor="uploadInput" className={styles.InputLabel}>
               {" "}

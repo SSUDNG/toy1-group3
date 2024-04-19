@@ -57,8 +57,6 @@ export const VacationProvider: React.FC<{ children: ReactNode }> = ({
         fetchedVacations.push({
           ...document.data(),
         } as Vacation);
-        console.log(fetchedVacations);
-        console.log("VacationsContext is working!");
       });
       setVacations(fetchedVacations);
     };
