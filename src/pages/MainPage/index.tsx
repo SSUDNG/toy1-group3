@@ -15,7 +15,7 @@ function MainPage() {
         <TAAListPage />
       </section>
       <section className={styles.bottom}>
-        <News />
+        <News isMain />
       </section>
     </div>
   );

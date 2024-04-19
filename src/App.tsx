@@ -34,7 +34,6 @@ function App() {
   const navigate = useNavigate();
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [userData, setUserData] = useState<User | null>(initialUserData);
-  console.log(pathname);
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -115,7 +114,7 @@ function App() {
             />
             <Route path="/" element={<MainPage />} />
             <Route path="/profile" element={<ProfilePage />} />
-            <Route path="/news" element={<NewsPage />} />
+            <Route path="/news" element={<NewsPage isMain={false} />} />
             <Route path="/TAA" element={<TAAListPage />} />
             <Route path="/request" element={<Request />} />
             <Route path="/fire" element={<FireTest />} />
