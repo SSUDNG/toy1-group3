@@ -70,6 +70,7 @@ export default function TAAList({ selectedVacationType }: TAAProps) {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
   console.log(selectedVacationType);
+
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage);
   };
@@ -116,9 +117,15 @@ export default function TAAList({ selectedVacationType }: TAAProps) {
         </Table>
       </TableContainer>
       <TablePagination
-        rowsPerPageOptions={[5, 10, 15]}
+        rowsPerPageOptions={[3, 5, 10]}
         component="div"
-        count={vacations.length}
+        count={
+          selectedVacationType === "전체"
+            ? vacations.length
+            : vacations.filter(
+                (row) => row.vacationType === selectedVacationType,
+              ).length
+        }
         rowsPerPage={rowsPerPage}
         page={page}
         onPageChange={handleChangePage}

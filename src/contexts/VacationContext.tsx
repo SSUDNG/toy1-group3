@@ -47,6 +47,7 @@ export const VacationProvider: React.FC<{ children: ReactNode }> = ({
 }) => {
   const [vacations, setVacations] = useState<Vacation[]>([]);
 
+  const [test, setTest] = useState(false);
   useEffect(() => {
     const fetchVacations = async () => {
       const q = query(collection(db, "vacations"));
@@ -62,7 +63,7 @@ export const VacationProvider: React.FC<{ children: ReactNode }> = ({
       setVacations(fetchedVacations);
     };
     fetchVacations();
-  }, []);
+  }, [test]);
 
   const addVacation = async (vacation: Vacation) => {
     try {
@@ -76,6 +77,8 @@ export const VacationProvider: React.FC<{ children: ReactNode }> = ({
       console.log("Vacation added successfully!");
     } catch (error) {
       console.error("Error adding vacation: ", error);
+    } finally {
+      setTest((prev) => !prev);
     }
   };
 
