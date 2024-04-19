@@ -30,7 +30,7 @@ const Row: React.FC<RowProps> = ({ row }) => {
   return (
     <>
       <TableRow>
-        <TableCell align="center" style={{ minWidth: 70 }}>
+        <TableCell align="center" style={{ minWidth: 10 }}>
           <IconButton
             aria-label="expand row"
             size="small"
@@ -39,16 +39,16 @@ const Row: React.FC<RowProps> = ({ row }) => {
             {open ? <KeyboardArrowUp /> : <KeyboardArrowDown />}
           </IconButton>
         </TableCell>
-        <TableCell align="center" style={{ minWidth: 200 }}>
+        <TableCell align="center" style={{ minWidth: 50 }}>
           {row.name}
         </TableCell>
-        <TableCell align="center" style={{ minWidth: 200 }}>
+        <TableCell align="center" style={{ minWidth: 50 }}>
           {row.vacationType}
         </TableCell>
-        <TableCell align="center" style={{ minWidth: 200 }}>
+        <TableCell align="center" style={{ minWidth: 50 }}>
           {row.startDate}
         </TableCell>
-        <TableCell align="center" style={{ minWidth: 200 }}>
+        <TableCell align="center" style={{ minWidth: 50 }}>
           {row.endDate}
         </TableCell>
       </TableRow>
@@ -87,17 +87,17 @@ export default function TAAList({ selectedVacationType }: TAAProps) {
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
             <TableRow>
-              <TableCell align="center" style={{ minWidth: 70 }} />
-              <TableCell align="center" style={{ minWidth: 200 }}>
+              <TableCell align="center" style={{ minWidth: 10 }} />
+              <TableCell align="center" style={{ minWidth: 50 }}>
                 성명
               </TableCell>
-              <TableCell align="center" style={{ minWidth: 200 }}>
+              <TableCell align="center" style={{ minWidth: 50 }}>
                 휴가종류
               </TableCell>
-              <TableCell align="center" style={{ minWidth: 200 }}>
+              <TableCell align="center" style={{ minWidth: 50 }}>
                 시작일
               </TableCell>
-              <TableCell align="center" style={{ minWidth: 200 }}>
+              <TableCell align="center" style={{ minWidth: 50 }}>
                 종료일
               </TableCell>
             </TableRow>
