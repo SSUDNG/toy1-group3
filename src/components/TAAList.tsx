@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Collapse,
   Paper,
@@ -14,18 +14,18 @@ import {
   Typography,
 } from "@mui/material";
 import { KeyboardArrowDown, KeyboardArrowUp } from "@mui/icons-material";
-import { AttendanceInfo } from "./TypeDef";
+import { useVacations, Vacation } from "../contexts/VacationContext";
 
-type TAAListProps = {
-  TAAdata: AttendanceInfo[];
-};
+interface TAAProps {
+  selectedVacationType: string;
+}
 
 interface RowProps {
-  row: AttendanceInfo;
+  row: Vacation;
 }
 
 const Row: React.FC<RowProps> = ({ row }) => {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
 
   return (
     <>
@@ -43,20 +43,20 @@ const Row: React.FC<RowProps> = ({ row }) => {
           {row.name}
         </TableCell>
         <TableCell align="center" style={{ minWidth: 200 }}>
-          {row.category}
+          {row.vacationType}
         </TableCell>
         <TableCell align="center" style={{ minWidth: 200 }}>
-          {row.begin.year}-{row.begin.month}-{row.begin.day}
+          {row.startDate}
         </TableCell>
         <TableCell align="center" style={{ minWidth: 200 }}>
-          {row.end.year}-{row.end.month}-{row.end.day}
+          {row.endDate}
         </TableCell>
       </TableRow>
       <TableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
           <Collapse in={open} timeout="auto" unmountOnExit>
             <Box sx={{ margin: 2 }}>
-              <Typography variant="body1">{row.comment}</Typography>
+              <Typography variant="body1">{row.notes}</Typography>
             </Box>
           </Collapse>
         </TableCell>
@@ -65,10 +65,11 @@ const Row: React.FC<RowProps> = ({ row }) => {
   );
 };
 
-export default function TAAList({ TAAdata }: TAAListProps) {
+export default function TAAList({ selectedVacationType }: TAAProps) {
+  const { vacations } = useVacations();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
-
+  console.log(selectedVacationType);
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage);
   };
@@ -103,19 +104,21 @@ export default function TAAList({ TAAdata }: TAAListProps) {
           </TableHead>
 
           <TableBody>
-            {TAAdata.slice(
-              page * rowsPerPage,
-              page * rowsPerPage + rowsPerPage,
-            ).map((row: AttendanceInfo) => (
-              <Row row={row} key={row.key} />
-            ))}
+            {selectedVacationType === "전체"
+              ? vacations
+                  .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                  .map((row: Vacation) => <Row row={row} key={row.email} />)
+              : vacations
+                  .filter((row) => row.vacationType === selectedVacationType)
+                  .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                  .map((row: Vacation) => <Row row={row} key={row.email} />)}
           </TableBody>
         </Table>
       </TableContainer>
       <TablePagination
         rowsPerPageOptions={[5, 10, 15]}
         component="div"
-        count={TAAdata.length}
+        count={vacations.length}
         rowsPerPage={rowsPerPage}
         page={page}
         onPageChange={handleChangePage}
