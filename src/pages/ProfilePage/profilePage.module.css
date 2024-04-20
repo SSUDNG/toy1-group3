@@ -16,6 +16,7 @@
   height: 150px;
   border-radius: 20px;
   overflow: hidden;
+  margin-bottom: 10px;
 }
 .infoContainer {
   margin-bottom: 20px;
