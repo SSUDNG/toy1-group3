@@ -1,0 +1,25 @@
+.form {
+  padding: 40px;
+  background-color: #fff;
+  border-radius: 20px;
+  border: 1px solid #EEEEEE;
+}
+
+.form .MuiFormControl-root,
+.form .MuiTextField-root {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.form .MuiButtonBase-root,
+.form .MuiButton-root {
+  width: 100%;
+}
+
+.btnContainer {
+  padding-left: 16px;
+  padding-top: 16px;
+  display: flex;
+  width: 100%;
+  gap: 20px;
+}

@@ -1,0 +1,120 @@
+.pageContainer {
+  padding: 40px;
+  width: 100%;
+  background-color: #fff;
+  border-radius: 20px;
+  border: 1px solid #EEEEEE;
+}
+.photoBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column !important;
+}
+.photoBox img{
+  width: 150px;
+  height: 150px;
+  border-radius: 20px;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+.infoContainer {
+  margin-bottom: 20px;
+  justify-content: center;
+}
+.infoItem {
+  height: 60px;
+  border: 1px solid #EEEEEE;
+  border-radius: 8px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px
+}
+.infoItem span:nth-child(1) {
+position: absolute;
+top: 8px;
+left: 8px;
+color: #9E9E9E;
+}
+
+.workBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.workTime {
+  width: 100%;
+  justify-content: center;
+}
+.confirmModal {
+  width: 400px;
+  height: 250px;
+  padding: 20px;
+  background-color: #FAFAFA;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  border-radius: 20px;
+  border: 1px solid #EEEEEE;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  position: absolute;
+}
+.modalBg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  backdrop-filter: blur(5px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9;
+}
+.editModal {
+  width: 700px;
+  padding: 40px;
+  border-radius: 20px;
+  background-color: #fff;
+  border: 1px solid #EEEEEE;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+.editModalBody {
+  display: flex;
+  gap: 20px;
+}
+@media screen and (max-width: 600px) {
+  .editModalBody {
+    flex-direction: column;
+  }
+}
+.editModalBodyInput {
+  flex-grow: 1;
+  margin: 20px
+}
+.editModalBodyInput div div {
+  width: 100%;
+  margin-bottom: 10px;
+}
+.modalBot{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+.uploadInput {
+  display: none;
+}
+.InputLabel {
+  width: 50px;
+  height: 50px;
+  background: #ECEFF1;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}

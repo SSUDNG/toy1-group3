@@ -1,0 +1,43 @@
+.loginWrap{
+  display: flex;
+  align-items: center;
+  gap: 260px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+
+.loginWrap .loginLeft{
+  flex-shrink: 0;
+}
+
+.head{
+  font-size: 50px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.txt{
+  margin:20px 0 60px;
+  font-size: 16px;
+}
+
+.loginBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  width: 350px;
+  height: 60px;
+  cursor: pointer;
+  background: none;
+  border: 1px solid #e2e2e2;
+  border-radius: 10px;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.loginBtn img{
+  width: 20px;
+}

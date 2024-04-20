@@ -1,0 +1,41 @@
+.form{
+  padding: 40px;
+  width: 100%;
+  background-color: #fff;
+  border-radius: 20px;
+  border: 1px solid #EEEEEE;
+}
+
+.headerContainer{
+  display: flex;
+  margin: 0;
+  padding:0 0 0 0;
+}
+
+.headerContainer .title{
+  padding: 0;
+  margin: 0;
+  width:50%;
+  box-sizing:border-box;
+}
+
+.headerContainer .right{
+  display: flex;
+  align-items:start;
+  justify-content: flex-end;
+  padding: 0;
+  margin: 0;
+  width:50%;
+  gap: 20px;
+}
+
+.headerContainer .right .selection{
+  margin : 0;
+  height: 35.01px;
+}
+
+.headerContainer .right .btn{
+  margin : 0;
+  height: 35.01px;
+  box-sizing: border-box;
+}
