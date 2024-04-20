@@ -33,7 +33,7 @@ React, TypeScript, Firebase, ESLint, Figma 등을 사용했습니다.
 
 #### 2. Vacation
 
-![VacationList](./public/images/readme/VacationList.png)
+![VacationList](./public/images/readme/vacationList.png)
 
 #### 3. Request
 

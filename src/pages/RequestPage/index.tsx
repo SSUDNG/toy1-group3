@@ -13,9 +13,6 @@ const Request: React.FunctionComponent = () => {
     ? JSON.parse(userDataString)
     : "{name: 'none', email: 'none'}";
 
-  console.log("userData is here");
-  console.log(userData);
-
   const [requestData, setRequestData] = useState<Vacation>({
     name: userData.name,
     email: userData.email,

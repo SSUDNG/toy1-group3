@@ -72,7 +72,6 @@ export const VacationProvider: React.FC<{ children: ReactNode }> = ({
         ),
         vacation,
       );
-      console.log("Vacation added successfully!");
     } catch (error) {
       console.error("Error adding vacation: ", error);
     } finally {

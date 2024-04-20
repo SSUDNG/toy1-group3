@@ -73,7 +73,6 @@ export default function TAAList({
   const { vacations } = useVacations();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(defaultRowsPerPage);
-  console.log(selectedVacationType);
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage);
   };

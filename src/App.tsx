@@ -10,7 +10,6 @@ import {
 } from "firebase/auth";
 import SideBar from "components/SideBar";
 import TAAListPage from "pages/TAAListPage";
-import FireTest from "pages/FIreCloudTestPage/FireTestPage";
 import { DefaultProfile } from "components/TypeDef";
 import FireCreate from "components/FireCreate";
 import { ReadDoc } from "components/FireRead";
@@ -61,7 +60,6 @@ function App() {
                 phoneNumber: Readdata.phoneNumber,
                 position: Readdata.position,
               };
-              console.log(profileData);
               localStorage.setItem("userData", JSON.stringify(profileData));
             } else {
               const profileData: DefaultProfile = {
@@ -77,7 +75,6 @@ function App() {
                   : "휴대폰 번호를 입력해주세요",
                 position: "포지션을 입력해주세요",
               };
-              console.log(profileData);
               FireCreate("users", profileData);
               localStorage.setItem("userData", JSON.stringify(profileData));
             }
@@ -121,7 +118,6 @@ function App() {
                   element={<TAAListPage defaultRowsPerPage={5} />}
                 />
                 <Route path="/request" element={<Request />} />
-                <Route path="/fire" element={<FireTest />} />
               </Routes>
             </ProfileDataProvider>
           </AttendanceProvider>

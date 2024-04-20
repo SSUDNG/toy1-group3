@@ -21,7 +21,13 @@ const ProfileInfo: React.FC<Props> = ({ path }) => {
       className={styles.infoContainer}
       direction={isSmallScreen ? "column" : "row"}
     >
-      <Grid direction="column" className={styles.photoBox} item xs={6}>
+      <Grid
+        container
+        direction="column"
+        className={styles.photoBox}
+        item
+        xs={6}
+      >
         <img
           src={
             profileData.photoURL

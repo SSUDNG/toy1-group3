@@ -8,9 +8,6 @@ import {
   signOut,
   User,
 } from "firebase/auth";
-import app from "../firebase";
-
-console.log(app);
 
 const Nav = () => {
   const userDataString = localStorage.getItem("userData");
