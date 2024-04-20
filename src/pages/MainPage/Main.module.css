@@ -7,19 +7,47 @@
 
 .top {
   display: flex;
+  height: auto;
   gap: 20px;
 }
 
 .profileCard {
   width: 100%;
+  padding: 40px;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: #fff;
   border: 1px solid #EEEEEE;
   border-radius: 20px;
-  padding: 20px;
+  flex-direction: column;
 }
+.profileCard > div {
+  width: 100%;
+}
+.infoContainerMain {
+  justify-content: center;
+  margin-bottom: 40px;
+}
+.workTimeMain {
+  justify-content: center;
+}
+.infoItemMain {
+  padding: 0;
+}
+.photoBoxMain {
+  text-align: center;
+}
+.photoBoxMain img {
+  width: 90px;
+  height: 90px;
+  border-radius: 8px;
+  margin: 0 auto;
+}
+.photoBoxMain h2 {
+  margin-top: 10px;
+}
+
 .middle {
   width: 100%;
   overflow: hidden;
