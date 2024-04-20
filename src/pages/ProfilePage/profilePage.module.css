@@ -45,6 +45,7 @@ color: #9E9E9E;
 }
 .workTime {
   width: 100%;
+  justify-content: center;
 }
 .confirmModal {
   width: 400px;
