@@ -15,7 +15,6 @@
   width: 150px;
   height: 150px;
   border-radius: 20px;
-  margin-bottom: 20px;
   overflow: hidden;
 }
 .infoContainer {
@@ -44,6 +43,9 @@ color: #9E9E9E;
   align-items: center;
   justify-content: center;
 }
+.workTime {
+  width: 100%;
+}
 .confirmModal {
   width: 400px;
   height: 250px;
@@ -68,6 +70,7 @@ color: #9E9E9E;
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 9;
 }
 .editModal {
   width: 700px;
