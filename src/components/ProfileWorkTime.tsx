@@ -37,7 +37,7 @@ const ProfileWorkTime = () => {
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
 
   return (
-    <div>
+    <div className={styles.workTime}>
       <Grid container spacing={2} direction={isSmallScreen ? "column" : "row"}>
         <Grid item xs={6}>
           <Box className={styles.infoItem}>

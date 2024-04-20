@@ -11,7 +11,7 @@ React, TypeScript, Firebase, ESLint, Figma 등을 사용했습니다.
 - 승헌 : 파이어베이스 이용해 Google OAuth 로그인 구현, News/SideBar 구현 
 - 상화 : 개발환경 구축, 휴가정보 표시 페이지(Vacation tab) 구현, Context API 적용하여 상태 관리, FireStore에 휴가정보 등록
 - 니콜라: 휴가신청(Request) 페이지 구현, MUI 테마/팔렛 설정 및 적용, 웹사이트 스타일링 (UI 디자인, CSS 및 반응형 작업)
--
+- 민수 : 프로필 페이지(Profile page) 구현, Context API 상태관리, FireStore 출퇴근 정보 등록
 
 ---
 
@@ -46,7 +46,7 @@ React, TypeScript, Firebase, ESLint, Figma 등을 사용했습니다.
 
 #### 5. Profile
 
-![Category](./public/images/readme/footer.png)
+![Category](./public/images/readme/Profile.png)
 
 ---
 

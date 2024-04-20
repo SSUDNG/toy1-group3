@@ -93,6 +93,7 @@ const EditModal: React.FC<EditModalProps> = ({ setEditModalOpen }) => {
             <div>
               <Typography variant="body2">Email</Typography>
               <TextField
+                disabled
                 type="text"
                 color="secondary"
                 value={editProfile.email || ""}
